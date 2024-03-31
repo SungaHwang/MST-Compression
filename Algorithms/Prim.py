@@ -57,27 +57,3 @@ def compress_matrix(matrix, min_spanning_tree):
 compressed_matrix = compress_matrix(matrix, min_spanning_tree)
 print("\nCompressed Weight Matrix (prim):")
 print(compressed_matrix)
-
-
-
-
-
-
-##
-import networkx as nx
-import matplotlib.pyplot as plt
-
-G = nx.Graph()
-for edge in min_spanning_tree:
-    u, v, weight = edge
-    G.add_edge(u, v, weight=weight)
-
-pos = nx.spring_layout(G)
-nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=12, font_weight='bold', \
-        edge_color='black', linewidths=1, arrows=False)
-
-labels = nx.get_edge_attributes(G, 'weight')
-nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-
-plt.title('Minimum Spanning Tree')
-plt.show()
