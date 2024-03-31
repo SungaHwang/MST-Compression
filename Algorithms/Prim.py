@@ -50,6 +50,7 @@ def compress_matrix(matrix, min_spanning_tree):
     for edge in min_spanning_tree:
         u, v, weight = edge
         compressed_matrix[u][v] = weight
+        compressed_matrix[v][u] = weight
 
     return compressed_matrix
 
@@ -57,6 +58,12 @@ compressed_matrix = compress_matrix(matrix, min_spanning_tree)
 print("\nCompressed Weight Matrix (prim):")
 print(compressed_matrix)
 
+
+
+
+
+
+##
 import networkx as nx
 import matplotlib.pyplot as plt
 
