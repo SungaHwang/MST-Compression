@@ -27,7 +27,7 @@ transform = transforms.Compose([
 train_dataset = datasets.MNIST(root='./data', train=True, transform=transform, download=True)
 test_dataset = datasets.MNIST(root='./data', train=False, transform=transform)
 
-batch_size = 128
+batch_size = 64
 train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
 
@@ -68,6 +68,7 @@ modified_model.load_state_dict(model.state_dict())
 
 sample_image, sample_label = next(iter(test_loader))
 
+#conv layer
 original_feature_map = modified_model.conv1(sample_image)
 modified_feature_map = modified_model.conv1(sample_image)
 
@@ -94,7 +95,7 @@ for i, acc in enumerate(accuracies):
 
 
 num_features_to_keep = int(num_features * 0.7)
-sorted_indices = sorted(range(len(accuracies)), key = lambda i : accuracies[i], reverse = True)[:num_features_to_keep]
+sorted_indices = sorted(range(len(accuracies)), key = lambda i : accuracy_original - accuracies[i], reverse = True)[:num_features_to_keep]
 
 new_features_map = torch.zeros_like(original_feature_map)
 for i in sorted_indices:
