@@ -1,10 +1,19 @@
 import torch
+import random
+import numpy as np
 import torch.nn as nn
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
+torch.manual_seed(0)
+random.seed(0)
+np.random.seed(0)
+
+if torch.cuda.is_available():
+    torch.cuda.manual_seed_all(0)
 
 class CNNModel(nn.Module):
     def __init__(self):
