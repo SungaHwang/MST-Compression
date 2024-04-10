@@ -2,6 +2,9 @@ import torch
 import torch.nn as nn
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
+import matplotlib.pyplot as plt
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 class CNNModel(nn.Module):
     def __init__(self):
@@ -66,51 +69,62 @@ with torch.no_grad():
 modified_model = CNNModel()
 modified_model.load_state_dict(model.state_dict()) 
 
-sample_image, sample_label = next(iter(test_loader))
+sample_images, sample_labels = next(iter(test_loader))
 
-#conv layer
-original_feature_map = modified_model.conv1(sample_image)
-modified_feature_map = modified_model.conv1(sample_image)
+# conv layer
+original_feature_maps = modified_model.conv1(sample_images)
+modified_feature_maps = modified_model.conv1(sample_images)
 
-accuracies = []
-num_features = modified_feature_map.size(1)
-
+accuracies_batch = []
+num_features = modified_feature_maps.size(1)
 
 for i in range(num_features):
-    modified_feature_map = original_feature_map.clone()
-    modified_feature_map[:, i, :, :] = 0  # Remove one element from the first feature map
-    outputs = modified_model.relu(modified_feature_map)
+    modified_feature_maps = original_feature_maps.clone()
+    modified_feature_maps[:, i, :, :] = 0  # Remove one element from the ith feature map
+    outputs = modified_model.relu(modified_feature_maps)
     outputs = modified_model.pool(outputs)
     outputs = outputs.view(outputs.size(0), -1)
     outputs = modified_model.fc(outputs)
 
     _, predicted = torch.max(outputs.data, 1)
-    correct_modified = (predicted == sample_label).sum().item()
-    accuracy_modified = correct_modified / sample_label.size(0)
+    correct_modified = (predicted == sample_labels).sum().item()
+    accuracy_modified = correct_modified / sample_labels.size(0)
 
-    accuracies.append(accuracy_modified)
+    accuracies_batch.append(accuracy_modified)
 
-for i, acc in enumerate(accuracies):
-    print(f'Accuracy on modified input (removed one element{i}): {acc}')
+for i, acc in enumerate(accuracies_batch):
+    print(f'Accuracy on modified input (removed one element from feature map {i}): {acc}')
 
 
-num_features_to_keep = int(num_features * 0.7)
-sorted_indices = sorted(range(len(accuracies)), key = lambda i : accuracy_original - accuracies[i], reverse = True)[:num_features_to_keep]
+removal_percentages = list(range(10, 101, 5))
+accuracies_percentage = []
 
-new_features_map = torch.zeros_like(original_feature_map)
-for i in sorted_indices:
-    new_features_map[:,i,:,:] = original_feature_map[:,i,:,:]
+for percentage in removal_percentages:
+    num_features_to_keep = int(num_features * (1 - percentage / 100))
+    sorted_indices = sorted(range(len(accuracies_batch)), key=lambda i: accuracies_batch[i])[:num_features_to_keep]
 
-outputs = modified_model.relu(new_features_map)
-outputs = modified_model.pool(outputs)
-outputs = outputs.view(outputs.size(0), -1)
-outputs = modified_model.fc(outputs)
+    new_feature_maps = torch.zeros_like(original_feature_maps)
+    for i in sorted_indices:
+        new_feature_maps[:, i, :, :] = original_feature_maps[:, i, :, :]
 
-_, predicted = torch.max(outputs.data, 1)
-correct_modified = (predicted == sample_label).sum().item()
-new_accuracy = correct_modified / sample_label.size(0)
+    outputs = modified_model.relu(new_feature_maps)
+    outputs = modified_model.pool(outputs)
+    outputs = outputs.view(outputs.size(0), -1)
+    outputs = modified_model.fc(outputs)
 
-print(f'New Accuracy with 70% features: {new_accuracy}')
+    _, predicted = torch.max(outputs.data, 1)
+    correct_modified = (predicted == sample_labels).sum().item()
+    new_accuracy = correct_modified / sample_labels.size(0)
+
+    accuracies_percentage.append(new_accuracy)
+
+    print(f'New Accuracy with {percentage}% features: {new_accuracy}')
+
+plt.plot(removal_percentages, accuracies_percentage)
+plt.xlabel('Percentage of Features Removed')
+plt.ylabel('Accuracy')
+plt.title('Accuracy: Percentage of Features Removed')
+plt.show()
 
 model_weights = modified_model.state_dict()
 
