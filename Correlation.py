@@ -1,33 +1,53 @@
+import torch
+import torch.nn as nn
 import numpy as np
 
-weights = np.random.rand(3, 3) # 임의로
+class CNNModel(nn.Module):
+    def __init__(self):
+        super(CNNModel, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, stride=1)
+        self.relu = nn.ReLU()
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+        self.fc = nn.Linear(16 * 13 * 13, 10)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.relu(x)
+        x = self.pool(x)
+        x = x.view(x.size(0), -1)
+        x = self.fc(x)
+        return x
+    
+model = CNNModel()
+model.load_state_dict(torch.load('model_weights_70.pth'))
 
 def generate_weight_relations(weights):
     relations = []
-    n, m = weights.shape
-    flattened_weights = weights.flatten()
+    num_filters, _, height, width = weights.shape
 
-    for i in range(n):
-        for j in range(m):
-            current_index = i * m + j
-            if j < m - 1: 
-                right_index = i * m + (j + 1)
-                relations.append([flattened_weights[current_index] - flattened_weights[right_index], str(current_index), str(right_index)])
-            if i < n - 1: 
-                down_index = (i + 1) * m + j
-                relations.append([flattened_weights[current_index] - flattened_weights[down_index], str(current_index), str(down_index)])
-            if i < n - 1 and j < m - 1:
-                diag_index = (i + 1) * m + (j + 1)
-                relations.append([flattened_weights[current_index] - flattened_weights[diag_index], str(current_index), str(diag_index)])
-
-    relations = sorted(relations, key=lambda x: np.abs(x[0]))
-
-    for relation in relations:
-        relation[0] = np.abs(relation[0])
+    for k in range(num_filters):
+        filter_relations = []
+        for i in range(height):
+            for j in range(width):
+                current_index = i * width + j
+                if j < width - 1:
+                    right_index = i * width + (j + 1)
+                    filter_relations.append([abs(weights[k, 0, i, j] - weights[k, 0, i, j + 1]), str(current_index), str(right_index)])
+                if i < height - 1:
+                    down_index = (i + 1) * width + j
+                    filter_relations.append([abs(weights[k, 0, i, j] - weights[k, 0, i + 1, j]), str(current_index), str(down_index)])
+                if i < height - 1 and j < width - 1:
+                    diag_index = (i + 1) * width + (j + 1)
+                    filter_relations.append([abs(weights[k, 0, i, j] - weights[k, 0, i + 1, j + 1]), str(current_index), str(diag_index)])
+        relations.append(filter_relations)
 
     return relations
 
-weight_relations = generate_weight_relations(weights)
+conv1_weights = model.state_dict()['conv1.weight'].cpu().detach().numpy()
+relations = generate_weight_relations(conv1_weights)
 
-for relation in weight_relations:
-    print(relation)
+# Save relations to separate text files
+for i, filter_relations in enumerate(relations):
+    with open(f'relations/relations_conv1_{i}.txt', 'w') as f:
+        for relation in filter_relations:
+            f.write(str(relation) + '\n')
