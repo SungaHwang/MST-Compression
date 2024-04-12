@@ -1,59 +1,68 @@
-import heapq
-import numpy as np
+class MinHeap:
+    def __init__(self):
+        self.heap = []
 
-def prim_algorithm(matrix):
-    n = len(matrix)
-    m = len(matrix[0])
-    visited = [False] * m
-    min_heap = []
+    def insert(self, edge):
+        self.heap.append(edge)
+        self.heapify_up(len(self.heap) - 1)
+
+    def extract_min(self):
+        if self.heap:
+            min_edge = self.heap[0]
+            last_edge = self.heap.pop()
+            if self.heap:
+                self.heap[0] = last_edge
+                self.heapify_down(0)
+            return min_edge
+        return None
+
+    def heapify_up(self, index):
+        while index > 0:
+            parent_index = (index - 1) // 2
+            if self.heap[parent_index][0] > self.heap[index][0]:
+                self.heap[parent_index], self.heap[index] = self.heap[index], self.heap[parent_index]
+                index = parent_index
+            else:
+                break
+
+    def heapify_down(self, index):
+        while True:
+            left_child_index = 2 * index + 1
+            right_child_index = 2 * index + 2
+            smallest = index
+            if left_child_index < len(self.heap) and self.heap[left_child_index][0] < self.heap[smallest][0]:
+                smallest = left_child_index
+            if right_child_index < len(self.heap) and self.heap[right_child_index][0] < self.heap[smallest][0]:
+                smallest = right_child_index
+            if smallest != index:
+                self.heap[index], self.heap[smallest] = self.heap[smallest], self.heap[index]
+                index = smallest
+            else:
+                break
+
+def prim(edges, num_nodes):
+    graph = {}
+    for weight, u, v in edges:
+        if u not in graph:
+            graph[u] = []
+        if v not in graph:
+            graph[v] = []
+        graph[u].append((v, weight))
+        graph[v].append((u, weight))
+
+    visited = set()
+    min_heap = MinHeap()
     min_spanning_tree = []
-
-    start_vertex = 0
-    visited[start_vertex] = True
-    for j in range(m):
-        if matrix[start_vertex][j] != 0:
-            heapq.heappush(min_heap, (matrix[start_vertex][j], start_vertex, j))
-
-    while min_heap:
-        weight, u, v = heapq.heappop(min_heap)
-        if not visited[v]:
-            visited[v] = True
-            min_spanning_tree.append((u, v, weight))
-            for j in range(m):
-                if matrix[v][j] != 0 and not visited[j]:
-                    heapq.heappush(min_heap, (matrix[v][j], v, j))
-
+    start_vertex = list(graph.keys())[0]
+    visited.add(start_vertex)
+    for neighbor, weight in graph[start_vertex]:
+        min_heap.insert((weight, start_vertex, neighbor))
+    while min_heap.heap:
+        weight, u, v = min_heap.extract_min()
+        if v not in visited:
+            visited.add(v)
+            min_spanning_tree.append((weight, u, v))
+            for neighbor, weight in graph[v]:
+                if neighbor not in visited:
+                    min_heap.insert((weight, v, neighbor))
     return min_spanning_tree
-
-matrix = [
-    [0.13883805,  0.2665918,   0.31708145, -0.6050197],
-    [0.14868219, -0.46095154,  0.00719108,  0.30362144],
-    [-0.29883927,  0.30510303, 0.15816714, -0.19512102],
-    [0.17021039, -0.37263504, -0.04782006, -1.0081314],
-    [0.42745575,  0.10338372,  0.35008624,  0.21098094],
-    [-0.21147376, -0.13646333,  0.16905327, -0.12487327],
-    [0.47969162, -1.12304, -0.27964967, 0.15170094],
-    [0.04808323,  0.26588908, -0.62521964,  0.08806055]
-]
-
-min_spanning_tree = prim_algorithm(matrix)
-print(min_spanning_tree)
-
-for edge in min_spanning_tree:
-    print(f"{edge[0]} - {edge[1]} : {edge[2]}")
-
-
-def compress_matrix(matrix, min_spanning_tree):
-    n = len(matrix)
-    compressed_matrix = np.zeros_like(matrix)
-
-    for edge in min_spanning_tree:
-        u, v, weight = edge
-        compressed_matrix[u][v] = weight
-        compressed_matrix[v][u] = weight
-
-    return compressed_matrix
-
-compressed_matrix = compress_matrix(matrix, min_spanning_tree)
-print("\nCompressed Weight Matrix (prim):")
-print(compressed_matrix)
