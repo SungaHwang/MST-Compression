@@ -40,6 +40,7 @@ transform = transforms.Compose([
 weights_path = "new_model\kruskal_weights.pth"
 loaded_weights = torch.load(weights_path)
 model = CNNModel()
+model.load_state_dict(loaded_weights)
 
 train_dataset = datasets.MNIST(root='./data', train=True, transform=transform, download=True)
 test_dataset = datasets.MNIST(root='./data', train=False, transform=transform)
