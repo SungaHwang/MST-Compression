@@ -3,6 +3,8 @@ import torch.nn as nn
 import numpy as np
 from file_reader import read_data_from_file
 from Kruskal import kruskal
+from Prim import prim
+from Floyd import floyd
 
 def get_bottom_nodes(min_spanning_tree):
     bottom_nodes = set()
@@ -41,7 +43,7 @@ def process_data_for_filters(num_filters):
 
         edges = [[weight, start, end] for weight, start, end in matrix]
 
-        min_spanning_tree = kruskal(edges, num_nodes=9)
+        min_spanning_tree = kruskal(edges, num_nodes=9) # 사용할 알고리즘으로 변경
         bottom_nodes, _ = get_bottom_nodes(min_spanning_tree)
 
         all_bottom_nodes_per_filter[filter_name] = bottom_nodes
@@ -71,7 +73,7 @@ if __name__ == "__main__":
     num_filters = 16 
 
     all_bottom_nodes_per_filter = process_data_for_filters(num_filters)
-    all_weights_per_filter = {}
+    all_weights_per_filter = []
 
     for filter_name, bottom_nodes in all_bottom_nodes_per_filter.items():
         print(f"Filter {filter_name}:")
@@ -88,12 +90,21 @@ if __name__ == "__main__":
         print(weights)
         conv1_weights_tensor = torch.Tensor(weights).view(1,3,3)
         print(conv1_weights_tensor)
-        all_weights_per_filter[filter_name] = weights
-        print(all_weights_per_filter)
+        all_weights_per_filter.append(weights)
+    
+    torch.set_printoptions(precision=10)
+    #weights_tensors = [torch.tensor(weight, dtype=torch.float32).view(3, 3) for weight in all_weights_per_filter]
+    #print(weights_tensors)
 
-    """
-    # 모델 저장
-    import os
-    os.makedirs('new_model', exist_ok = True)
-    torch.save(model.state_dict(), 'new_model/kruskal_weights.pth')
-    """
+def load_weights(model, weights):
+    for i, weight in enumerate(weights):
+        conv_weight = torch.tensor(weight, dtype=torch.float32).view(1, 1, 3, 3)
+        model.conv1.weight.data[i] = conv_weight
+
+load_weights(model, all_weights_per_filter)
+print(model.conv1.weight)
+
+# 모델 저장
+import os
+os.makedirs('new_model', exist_ok = True)
+torch.save(model.state_dict(), 'new_model/kruskal_weights.pth')
