@@ -87,11 +87,14 @@ def train_model(model, train_loader, epochs=100):
 
 # 1
 def prune_model_weights(model, algorithm='kruskal'):
+    total_pruned_weights = 0
     for name, param in model.named_parameters():
         if 'conv' in name and len(param.shape) == 4:
             # 가중치를 CPU로 이동 후 NumPy 배열로 변환
             weights = param.data.cpu().numpy()
             F, C, H, W = weights.shape
+
+            layer_pruned_weights = 0
 
             for f in range(F):  # 각 필터에 대해
                 G = nx.Graph()
@@ -136,9 +139,13 @@ def prune_model_weights(model, algorithm='kruskal'):
                     i, j = leaf
                     weights[f, :, i, j] = 0
 
+            logging.info(f"{name}: Pruned {layer_pruned_weights} weights.")
+            total_pruned_weights += layer_pruned_weights  # 전체 프루닝된 가중치 수 업데이트
+
             # 가중치 업데이트
             param.data = torch.from_numpy(weights).to(param.device)
 
+    logging.info(f"Total pruned weights in the model: {total_pruned_weights}")
     return model
 
 
@@ -146,6 +153,7 @@ def prune_model_weights(model, algorithm='kruskal'):
 def prune_model_filters_by_importance(model, train_loader, test_loader, algorithm='kruskal'):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
+    total_pruned_filters = 0 
     
     for name, param in model.named_parameters():
         if 'conv' in name and len(param.shape) == 4:
@@ -165,9 +173,16 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, algorith
                 logging.info(f"Using Prim's algorithm for MST filter in layer {name}")
 
             leaves = [node for node, degree in dict(T.degree()).items() if degree == 1]
-            for leaf in leaves:
-                param.data[leaf] = 0
+            num_pruned_filters = len(leaves) 
+            total_pruned_filters += num_pruned_filters
 
+            logging.info(f"{name}: Pruned {num_pruned_filters} filters.")
+
+            for leaf in leaves:
+                param.data[leaf, :, :, :] = 0
+
+
+    logging.info(f"Total pruned filters in the model: {total_pruned_filters}")
     return model
 
 def compute_layer_importance(model, train_loader, test_loader, layer_name):

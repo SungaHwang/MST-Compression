@@ -10,22 +10,26 @@ import networkx as nx
 import os
 import datetime
 import logging
+import copy
 
-# 로깅 설정
+
 def setup_logging():
     current_time = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    log_directory = "log"
+    log_directory = "ResNet18/log"
     log_filename = f"{current_time}.log"
     
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
 
     log_file_path = os.path.join(log_directory, log_filename)
-
     logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
     logging.info("Logging setup complete - logging to: " + log_file_path)
 
-# 데이터 로딩
+def set_seed(seed):
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
 def load_data(dataset_name):
     if dataset_name == "MNIST":
         transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
@@ -44,14 +48,13 @@ def load_data(dataset_name):
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=64, shuffle=False)
     return train_loader, test_loader
 
-# 모델 정의 및 초기화
 def initialize_model():
     model = resnet18(pretrained=False)
     return model
 
-# 모델 학습
 def train_model(model, train_loader, epochs=100):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(device)
     model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
@@ -69,44 +72,70 @@ def train_model(model, train_loader, epochs=100):
         checkpoint_dir = 'checkpoints/ResNet18'
         os.makedirs(checkpoint_dir, exist_ok=True)
         torch.save(model.state_dict(), f'{checkpoint_dir}/checkpoint_epoch_{epoch}.pth')
-
     return model
 
-# 1
-def prune_model_weights(model, algorithm='prim'):
+def prune_model_weights(model, target_layers):
+    total_pruned_weights = 0 
     for name, param in model.named_parameters():
-        if 'conv' in name and len(param.shape) == 4:
-            G = nx.Graph()
+        if 'conv' in name and name in target_layers:
             weights = param.data.cpu().numpy()
-            for i in range(weights.shape[0]):
-                for j in range(i + 1, weights.shape[0]):
-                    weight_diff = np.abs(weights[i] - weights[j]).sum()
-                    G.add_edge(i, j, weight=weight_diff)
-            
-            if algorithm == 'kruskal':
+            F, C, H, W = weights.shape
+            layer_pruned_weights = 0
+            for f in range(F):
+                G = nx.Graph()
+                for i in range(H):
+                    for j in range(W):
+                        current_weight = weights[f, :, i, j]
+                        if j < W - 1:
+                            right_weight = weights[f, :, i, j+1]
+                            diff = np.sum(np.abs(current_weight - right_weight))
+                            G.add_edge((i, j), (i, j+1), weight=diff)
+                        if i < H - 1:
+                            down_weight = weights[f, :, i+1, j]
+                            diff = np.sum(np.abs(current_weight - down_weight))
+                            G.add_edge((i, j), (i+1, j), weight=diff)
                 T = nx.minimum_spanning_tree(G, algorithm='kruskal')
-                logging.info(f"Using Kruskal's algorithm for weight MST in layer {name}")
-            elif algorithm == 'prim':
-                T = nx.minimum_spanning_tree(G, algorithm='prim')
-                logging.info(f"Using Prim's algorithm for MST weight in layer {name}")
-            
-            leaves = [node for node, degree in dict(T.degree()).items() if degree == 1]
-            for leaf in leaves:
-                weights[leaf] = 0
+                leaves = [node for node, degree in dict(T.degree()).items() if degree == 1]
+                for leaf in leaves:
+                    i, j = leaf
+                    weights[f, :, i, j] = 0
+            logging.info(f"{name}: Pruned {layer_pruned_weights} weights.")
+            total_pruned_weights += layer_pruned_weights
             param.data = torch.from_numpy(weights).to(param.device)
-
+    logging.info(f"Total pruned weights in the model: {total_pruned_weights}")
     return model
 
+def prune_model_filters_by_importance(model, train_loader, test_loader, target_layers):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+    total_pruned_filters = 0
+    for name, param in model.named_parameters():
+        if 'conv' in name and name in target_layers:
+            importance_scores = compute_layer_importance(model, train_loader, test_loader, name)
+            G = nx.Graph()
+            num_filters = len(importance_scores)
+            for i in range(num_filters):
+                for j in range(i + 1, num_filters):
+                    G.add_edge(i, j, weight=np.abs(importance_scores[i] - importance_scores[j]))
+            T = nx.minimum_spanning_tree(G, algorithm='kruskal')
+            leaves = [node for node, degree in dict(T.degree()).items() if degree == 1]
+            num_pruned_filters = len(leaves) 
+            total_pruned_filters += num_pruned_filters 
 
-# 2
-def compute_filter_importance(model, train_loader, test_loader):
+            logging.info(f"{name}: Pruned {num_pruned_filters} filters.")
+            for leaf in leaves:
+                param.data[leaf, :, :, :] = 0
+    logging.info(f"Total pruned filters in the model: {total_pruned_filters}")
+    return model
+
+def compute_layer_importance(model, train_loader, test_loader, layer_name):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
     original_accuracy = evaluate_model(model, test_loader)
     importance_scores = []
 
     for name, param in model.named_parameters():
-        if 'conv' in name and len(param.shape) == 4:
+        if name == layer_name:
             for i in range(param.shape[0]):
                 original_weight = param.data[i].clone()
                 param.data[i] = 0
@@ -114,31 +143,9 @@ def compute_filter_importance(model, train_loader, test_loader):
                 importance_score = original_accuracy - reduced_accuracy 
                 importance_scores.append(importance_score)
                 param.data[i] = original_weight
+
     return importance_scores
 
-def prune_model_filters_by_importance(model, train_loader, test_loader, algorithm='prim'):
-    importance_scores = compute_filter_importance(model, train_loader, test_loader)
-    G = nx.Graph()
-    for i in range(len(importance_scores)):
-        for j in range(i + 1, len(importance_scores)):
-            G.add_edge(i, j, weight=np.abs(importance_scores[i] - importance_scores[j]))
-    
-    if algorithm == 'kruskal':
-        T = nx.minimum_spanning_tree(G, algorithm='kruskal')
-        logging.info(f"Using kruskal's algorithm for MST filter")
-
-    elif algorithm == 'prim':
-        T = nx.minimum_spanning_tree(G, algorithm='prim')
-        logging.info(f"Using kruskal's algorithm for MST filter")
-
-    leaves = [node for node, degree in dict(T.degree()).items() if degree == 1]
-    for leaf in leaves:
-        list(model.parameters())[0][leaf] = 0
-
-    return model
-
-
-# 성능 평가
 def evaluate_model(model, test_loader):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
@@ -158,10 +165,13 @@ def evaluate_model(model, test_loader):
 
 import time
 
-def compute_flops(model, input_size=(1, 3, 224, 224)):
+def compute_flops(model, input_size=(1, 3, 224, 224), device = 'cuda'):
     model.eval()
-    input = torch.randn(input_size)
-    flops, params = profile(model, inputs=(input,), verbose=False)
+    device = torch.device(device if torch.cuda.is_available() else "cpu")
+    model.to(device)
+    input_tensor = torch.randn(input_size).to(device)
+    flops, params = profile(model, inputs=(input_tensor,), verbose=False)
+
     return flops
 
 def count_nonzero_parameters(model):
@@ -171,7 +181,6 @@ def count_nonzero_parameters(model):
 def evaluate_model_full(model, test_loader, device):
     model.to(device)
     model.eval()
-    
     # Accuracy
     correct = 0
     total = 0
@@ -196,13 +205,19 @@ def evaluate_model_full(model, test_loader, device):
 
     return accuracy, inference_time, flops, nonzero_params
 
+
 def main():
-    setup_logging()  # 로깅 설정 호출
+    setup_logging()
     logging.info("Starting the program")
+
+    seed = 0
+    set_seed(seed)
 
     train_loader, test_loader = load_data("CIFAR10")
     model = initialize_model()
+
     trained_model = train_model(model, train_loader)
+    original_model = copy.deepcopy(trained_model)
 
     # 평가지표 저장
     results = {}
@@ -210,14 +225,16 @@ def main():
     print(device)
     
     # 원본 모델 평가
-    results['original'] = evaluate_model_full(trained_model, test_loader, device)
-    
+    original_model = copy.deepcopy(trained_model)
+    results['original'] = evaluate_model_full(original_model, test_loader, device)
+
     # 첫 번째 경량화 방법 적용 후 평가
-    pruned_model_weights = prune_model_weights(trained_model)
+    target_layers = ['layer1.0.conv1', 'layer2.0.conv1', 'layer3.0.conv1', 'layer4.0.conv1']
+    pruned_model_weights = prune_model_weights(copy.deepcopy(original_model), target_layers)
     results['pruned_weights'] = evaluate_model_full(pruned_model_weights, test_loader, device)
 
     # 두 번째 경량화 방법 적용 후 평가
-    pruned_model_filters = prune_model_filters_by_importance(trained_model, train_loader, test_loader)
+    pruned_model_filters = prune_model_filters_by_importance(copy.deepcopy(original_model), train_loader, test_loader, target_layers)
     results['pruned_filters'] = evaluate_model_full(pruned_model_filters, test_loader, device)
 
     # 결과 출력
