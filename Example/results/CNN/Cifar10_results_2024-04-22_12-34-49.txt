@@ -1,0 +1,15 @@
+Experiment Settings:
+Date and Time: 2024-04-22 12:34:49
+Model: CNN
+Optimizer: SGD
+Learning Rate: 0.01
+Momentum: 0.9
+Criterion: CrossEntropyLoss
+Batch Size: 64
+
+Layer Parameters:
+conv1.weight: 4800
+conv2.weight: 204800
+fc1.weight: 8388608
+fc2.weight: 10240
+

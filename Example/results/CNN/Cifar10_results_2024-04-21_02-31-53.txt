@@ -1,0 +1,43 @@
+Experiment Settings:
+Date and Time: 2024-04-21 02:42:11
+Model: CNN
+Optimizer: SGD
+Learning Rate: 0.01
+Momentum: 0.9
+Criterion: CrossEntropyLoss
+Batch Size: 64
+
+Layer Parameters:
+conv1.weight: 4800
+conv2.weight: 204800
+fc1.weight: 8388608
+fc2.weight: 10240
+Initial Model Stats:
+Accuracy: 76.36%
+Parameters: 8609674
+FLOPs: 8609674
+
+conv1 Layer - Pruned with Kruskal algorithm:
+Pruned Accuracy: 77.67%
+Pruned Parameters: 8609674
+Pruned FLOPs: 8604874
+
+conv2 Layer - Pruned with Kruskal algorithm:
+Pruned Accuracy: 76.12%
+Pruned Parameters: 8609674
+Pruned FLOPs: 8400074
+
+fc1 Layer - Pruned with Kruskal algorithm:
+Pruned Accuracy: 50.20%
+Pruned Parameters: 8609674
+Pruned FLOPs: 11466
+
+fc2 Layer - Pruned with Kruskal algorithm:
+Pruned Accuracy: 45.22%
+Pruned Parameters: 8609674
+Pruned FLOPs: 1226
+
+After Full Model Pruning - Kruskal Algorithm:
+Final Model Accuracy: 45.22%
+Final Model Parameters: 8609674
+Final Model FLOPs: 1226
