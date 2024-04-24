@@ -12,6 +12,7 @@ import os
 import datetime
 import logging
 import copy
+import random
 import argparse
 
 
@@ -30,6 +31,7 @@ def setup_logging():
     logging.info("Logging setup complete - logging to: " + log_file_path)
 
 def set_seed(seed):
+    random.seed(seed)
     torch.manual_seed(seed)
     np.random.seed(seed)
     if torch.cuda.is_available():
@@ -39,7 +41,7 @@ def set_seed(seed):
 # 데이터 로딩
 def load_data(dataset_name):
     if dataset_name == "MNIST":
-        transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
+        transform = transforms.Compose([transforms.Grayscale(num_output_channels=3), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
         train_set = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
         test_set = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
     elif dataset_name == "CIFAR10":
@@ -47,7 +49,7 @@ def load_data(dataset_name):
         train_set = datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
         test_set = datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
     elif dataset_name == "ImageNet":
-        transform = transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor()])
+        transform = transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor(), transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
         train_set = datasets.ImageFolder(root='./data/train', transform=transform)
         test_set = datasets.ImageFolder(root='./data/val', transform=transform)
     else:
@@ -95,7 +97,8 @@ def train_model(model, train_loader, epochs=100):
 def prune_model_weights(model, target_layers , algorithm='kruskal'):
     total_pruned_weights = 0 
     for name, param in model.named_parameters():
-        if 'conv' in name and name in target_layers:
+        if name in target_layers:
+            logging.info(f"Pruning layer: {name}")
             # 가중치를 CPU로 이동 후 NumPy 배열로 변환
             weights = param.data.cpu().numpy()
             F, C, H, W = weights.shape
@@ -162,7 +165,8 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
     model.to(device)
     total_pruned_filters = 0
     for name, param in model.named_parameters():
-        if 'conv' in name and name in target_layers:
+        if name in target_layers:
+            logging.info(f"Pruning layer: {name}")
             importance_scores = compute_layer_importance(model, train_loader, test_loader, name)
             G = nx.Graph()
             num_filters = len(importance_scores)
@@ -324,9 +328,6 @@ def main(args):
     model = initialize_model()
 
     trained_model = train_model(model, train_loader, epochs=args.epochs)
-    #checkpoint_path = 'C:\MST-tech\checkpoints\ResNet18\checkpoint_epoch_99.pth'
-    #state_dict = torch.load(checkpoint_path, map_location=torch.device('cpu'))
-    #trained_model = model.load_state_dict(state_dict)
 
     original_model = copy.deepcopy(trained_model)
 
@@ -339,15 +340,18 @@ def main(args):
     original_model = copy.deepcopy(trained_model)
     results['original'] = evaluate_model_full(original_model, test_loader, device)
 
+    # 프루닝 실행
     if args.pruning_method == "prune_model_weights":
         pruned_model = prune_model_weights(copy.deepcopy(original_model), target_layers=args.target_layers, algorithm=args.algorithm)
+        method_key = 'pruned_weights'
     elif args.pruning_method == "prune_model_filters_by_importance":
         pruned_model = prune_model_filters_by_importance(copy.deepcopy(original_model), train_loader, test_loader, target_layers=args.target_layers, algorithm=args.algorithm)
+        method_key = 'pruned_filters'
     else:
         raise ValueError("Invalid pruning method")
 
-    # 평가
-    results['pruned_model'] = evaluate_model_full(pruned_model, test_loader, device)
+    # 프루닝된 모델 평가
+    results[method_key] = evaluate_model_full(pruned_model, test_loader, device)
 
     logging.info(f"Epochs: {args.epochs}")
     logging.info(f"Target layers: {args.target_layers}")
@@ -355,10 +359,10 @@ def main(args):
     # 결과 출력
     print(f"Original Model: Accuracy: {results['original'][0]}, Inference Time: {results['original'][1]}, FLOPs: {results['original'][2]}, Non-zero Params: {results['original'][3]}")
     logging.info(f"Original Model: Accuracy: {results['original'][0]}, Inference Time: {results['original'][1]}, FLOPs: {results['original'][2]}, Non-zero Params: {results['original'][3]}")
-    print(f"Pruned by Weights: Accuracy: {results['pruned_weights'][0]}, Inference Time: {results['pruned_weights'][1]}, FLOPs: {results['pruned_weights'][2]}, Non-zero Params: {results['pruned_weights'][3]}")
-    logging.info(f"Pruned by Weights: Accuracy: {results['pruned_weights'][0]}, Inference Time: {results['pruned_weights'][1]}, FLOPs: {results['pruned_weights'][2]}, Non-zero Params: {results['pruned_weights'][3]}")
-    print(f"Pruned by Filters: Accuracy: {results['pruned_filters'][0]}, Inference Time: {results['pruned_filters'][1]}, FLOPs: {results['pruned_filters'][2]}, Non-zero Params: {results['pruned_filters'][3]}")
-    logging.info(f"Pruned by Filters: Accuracy: {results['pruned_filters'][0]}, Inference Time: {results['pruned_filters'][1]}, FLOPs: {results['pruned_filters'][2]}, Non-zero Params: {results['pruned_filters'][3]}")
+
+    # 프루닝 결과 출력
+    print(f"Pruned Model ({args.pruning_method}): Accuracy: {results[method_key][0]}, Inference Time: {results[method_key][1]}, FLOPs: {results[method_key][2]}, Non-zero Params: {results[method_key][3]}")
+    logging.info(f"Pruned Model ({args.pruning_method}): Accuracy: {results[method_key][0]}, Inference Time: {results[method_key][1]}, FLOPs: {results[method_key][2]}, Non-zero Params: {results[method_key][3]}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Model Pruning")
