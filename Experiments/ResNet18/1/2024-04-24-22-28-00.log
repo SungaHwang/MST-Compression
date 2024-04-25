@@ -1,0 +1,1077 @@
+2024-04-24 22:28:00,024:INFO:Logging setup complete - logging to: ResNet18/log\2024-04-24-22-28-00.log
+2024-04-24 22:28:00,024:INFO:Starting the program
+2024-04-24 22:28:00,025:INFO:Arguments: Namespace(dataset='CIFAR10', algorithm='prim', pruning_method='prune_model_weights', target_layers=['layer1.0.conv1.weight', 'layer2.0.conv1.weight', 'layer3.0.conv1.weight', 'layer4.0.conv1.weight'], epochs=100)
+2024-04-24 22:28:01,190:INFO:Dataset: CIFAR10
+2024-04-24 22:28:15,074:INFO:Epoch 1, Loss: 2.3360204696655273
+2024-04-24 22:28:26,835:INFO:Epoch 2, Loss: 1.092810034751892
+2024-04-24 22:28:38,700:INFO:Epoch 3, Loss: 0.8663073778152466
+2024-04-24 22:28:50,411:INFO:Epoch 4, Loss: 0.7450141906738281
+2024-04-24 22:29:02,148:INFO:Epoch 5, Loss: 0.2958768308162689
+2024-04-24 22:29:13,879:INFO:Epoch 6, Loss: 0.21184232831001282
+2024-04-24 22:29:25,487:INFO:Epoch 7, Loss: 0.9123275876045227
+2024-04-24 22:29:37,838:INFO:Epoch 8, Loss: 0.3282165825366974
+2024-04-24 22:29:49,507:INFO:Epoch 9, Loss: 0.6746284365653992
+2024-04-24 22:30:01,173:INFO:Epoch 10, Loss: 0.41835248470306396
+2024-04-24 22:30:12,877:INFO:Epoch 11, Loss: 0.8862966299057007
+2024-04-24 22:30:24,561:INFO:Epoch 12, Loss: 0.09956906735897064
+2024-04-24 22:30:36,230:INFO:Epoch 13, Loss: 0.0515759103000164
+2024-04-24 22:30:47,880:INFO:Epoch 14, Loss: 0.22115081548690796
+2024-04-24 22:30:59,472:INFO:Epoch 15, Loss: 0.22347941994667053
+2024-04-24 22:31:11,144:INFO:Epoch 16, Loss: 0.25284814834594727
+2024-04-24 22:31:23,036:INFO:Epoch 17, Loss: 0.08064964413642883
+2024-04-24 22:31:34,750:INFO:Epoch 18, Loss: 0.3992278575897217
+2024-04-24 22:31:46,290:INFO:Epoch 19, Loss: 0.0669286847114563
+2024-04-24 22:31:57,952:INFO:Epoch 20, Loss: 0.0012985431822016835
+2024-04-24 22:32:09,547:INFO:Epoch 21, Loss: 0.06998438388109207
+2024-04-24 22:32:21,205:INFO:Epoch 22, Loss: 0.16656067967414856
+2024-04-24 22:32:32,789:INFO:Epoch 23, Loss: 0.04607897251844406
+2024-04-24 22:32:44,457:INFO:Epoch 24, Loss: 0.01033866498619318
+2024-04-24 22:32:56,156:INFO:Epoch 25, Loss: 0.05448194220662117
+2024-04-24 22:33:08,554:INFO:Epoch 26, Loss: 0.17285692691802979
+2024-04-24 22:33:20,527:INFO:Epoch 27, Loss: 0.16251282393932343
+2024-04-24 22:33:33,002:INFO:Epoch 28, Loss: 0.17479869723320007
+2024-04-24 22:33:45,340:INFO:Epoch 29, Loss: 0.2149161845445633
+2024-04-24 22:33:57,819:INFO:Epoch 30, Loss: 0.003776851110160351
+2024-04-24 22:34:10,121:INFO:Epoch 31, Loss: 0.12852180004119873
+2024-04-24 22:34:22,606:INFO:Epoch 32, Loss: 0.03705316036939621
+2024-04-24 22:34:34,875:INFO:Epoch 33, Loss: 0.033302582800388336
+2024-04-24 22:34:47,345:INFO:Epoch 34, Loss: 0.04663735628128052
+2024-04-24 22:34:59,890:INFO:Epoch 35, Loss: 0.0027835844084620476
+2024-04-24 22:35:12,369:INFO:Epoch 36, Loss: 0.001090268837288022
+2024-04-24 22:35:24,375:INFO:Epoch 37, Loss: 0.08451853692531586
+2024-04-24 22:35:36,728:INFO:Epoch 38, Loss: 0.027874594554305077
+2024-04-24 22:35:48,946:INFO:Epoch 39, Loss: 0.012726932764053345
+2024-04-24 22:36:01,319:INFO:Epoch 40, Loss: 0.010053623467683792
+2024-04-24 22:36:13,557:INFO:Epoch 41, Loss: 0.003709489479660988
+2024-04-24 22:36:25,918:INFO:Epoch 42, Loss: 0.043874844908714294
+2024-04-24 22:36:38,126:INFO:Epoch 43, Loss: 0.0027110755909234285
+2024-04-24 22:36:50,327:INFO:Epoch 44, Loss: 0.002721816999837756
+2024-04-24 22:37:01,897:INFO:Epoch 45, Loss: 9.43873674259521e-05
+2024-04-24 22:37:13,521:INFO:Epoch 46, Loss: 0.04117881506681442
+2024-04-24 22:37:25,117:INFO:Epoch 47, Loss: 0.06858333945274353
+2024-04-24 22:37:36,788:INFO:Epoch 48, Loss: 0.004004545975476503
+2024-04-24 22:37:48,471:INFO:Epoch 49, Loss: 0.002855648286640644
+2024-04-24 22:38:00,918:INFO:Epoch 50, Loss: 0.00011820401414297521
+2024-04-24 22:38:13,436:INFO:Epoch 51, Loss: 0.06623248755931854
+2024-04-24 22:38:25,818:INFO:Epoch 52, Loss: 0.00023283751215785742
+2024-04-24 22:38:37,940:INFO:Epoch 53, Loss: 0.0008769111009314656
+2024-04-24 22:38:49,641:INFO:Epoch 54, Loss: 0.0024722388479858637
+2024-04-24 22:39:01,220:INFO:Epoch 55, Loss: 4.091118535143323e-05
+2024-04-24 22:39:12,906:INFO:Epoch 56, Loss: 1.0468385219573975
+2024-04-24 22:39:24,538:INFO:Epoch 57, Loss: 0.08407361060380936
+2024-04-24 22:39:36,226:INFO:Epoch 58, Loss: 0.008583336137235165
+2024-04-24 22:39:47,873:INFO:Epoch 59, Loss: 0.007905128411948681
+2024-04-24 22:39:59,569:INFO:Epoch 60, Loss: 0.37217164039611816
+2024-04-24 22:40:11,287:INFO:Epoch 61, Loss: 0.0021951585076749325
+2024-04-24 22:40:22,985:INFO:Epoch 62, Loss: 0.007536265533417463
+2024-04-24 22:40:34,658:INFO:Epoch 63, Loss: 0.0065993089228868484
+2024-04-24 22:40:46,335:INFO:Epoch 64, Loss: 0.0005022961995564401
+2024-04-24 22:40:57,951:INFO:Epoch 65, Loss: 0.01594744250178337
+2024-04-24 22:41:09,645:INFO:Epoch 66, Loss: 0.005108456127345562
+2024-04-24 22:41:21,301:INFO:Epoch 67, Loss: 0.057515572756528854
+2024-04-24 22:41:32,979:INFO:Epoch 68, Loss: 0.06792695820331573
+2024-04-24 22:41:45,339:INFO:Epoch 69, Loss: 6.548887540702708e-06
+2024-04-24 22:41:57,846:INFO:Epoch 70, Loss: 0.036033764481544495
+2024-04-24 22:42:09,824:INFO:Epoch 71, Loss: 0.01884271949529648
+2024-04-24 22:42:21,596:INFO:Epoch 72, Loss: 0.009471808560192585
+2024-04-24 22:42:33,234:INFO:Epoch 73, Loss: 0.5617771744728088
+2024-04-24 22:42:45,009:INFO:Epoch 74, Loss: 0.13963726162910461
+2024-04-24 22:42:57,553:INFO:Epoch 75, Loss: 0.00012038194836350158
+2024-04-24 22:43:10,151:INFO:Epoch 76, Loss: 0.0001671581412665546
+2024-04-24 22:43:22,020:INFO:Epoch 77, Loss: 0.002070102607831359
+2024-04-24 22:43:33,893:INFO:Epoch 78, Loss: 8.605036782682873e-06
+2024-04-24 22:43:45,513:INFO:Epoch 79, Loss: 0.016903864219784737
+2024-04-24 22:43:57,247:INFO:Epoch 80, Loss: 0.0005876142531633377
+2024-04-24 22:44:08,884:INFO:Epoch 81, Loss: 0.00035379428300075233
+2024-04-24 22:44:21,529:INFO:Epoch 82, Loss: 0.0006283549591898918
+2024-04-24 22:44:33,070:INFO:Epoch 83, Loss: 0.07691386342048645
+2024-04-24 22:44:44,763:INFO:Epoch 84, Loss: 8.296644227812067e-05
+2024-04-24 22:44:56,467:INFO:Epoch 85, Loss: 0.012930646538734436
+2024-04-24 22:45:08,089:INFO:Epoch 86, Loss: 0.0003331030602566898
+2024-04-24 22:45:19,675:INFO:Epoch 87, Loss: 7.703640221734531e-06
+2024-04-24 22:45:31,520:INFO:Epoch 88, Loss: 0.18736660480499268
+2024-04-24 22:45:43,419:INFO:Epoch 89, Loss: 0.00988960824906826
+2024-04-24 22:45:55,574:INFO:Epoch 90, Loss: 0.15909427404403687
+2024-04-24 22:46:07,231:INFO:Epoch 91, Loss: 0.3923005759716034
+2024-04-24 22:46:20,326:INFO:Epoch 92, Loss: 0.36083337664604187
+2024-04-24 22:46:32,070:INFO:Epoch 93, Loss: 0.0003400771238375455
+2024-04-24 22:46:43,729:INFO:Epoch 94, Loss: 0.0006023918394930661
+2024-04-24 22:46:55,292:INFO:Epoch 95, Loss: 0.13499021530151367
+2024-04-24 22:47:06,943:INFO:Epoch 96, Loss: 0.004342499189078808
+2024-04-24 22:47:18,521:INFO:Epoch 97, Loss: 8.069843170233071e-05
+2024-04-24 22:47:30,155:INFO:Epoch 98, Loss: 8.651214011479169e-05
+2024-04-24 22:47:41,817:INFO:Epoch 99, Loss: 0.001968588214367628
+2024-04-24 22:47:53,580:INFO:Epoch 100, Loss: 0.001302334014326334
+2024-04-24 22:47:55,504:INFO:Pruning layer: layer1.0.conv1.weight
+2024-04-24 22:47:55,507:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,507:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,507:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,507:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,508:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,508:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,508:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,508:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,508:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,509:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,509:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,509:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,509:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,509:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,510:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,510:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,510:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,510:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,510:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,511:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,511:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,511:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,511:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,511:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,512:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,512:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,512:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,512:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,513:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,513:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,513:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,513:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,513:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,513:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,514:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,514:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,514:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,514:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,514:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,515:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,515:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,515:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,515:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,515:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,515:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,516:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,516:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,516:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,516:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,516:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,517:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,517:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,517:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,517:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,517:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,518:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,518:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,518:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,518:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,518:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,518:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,519:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,519:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,519:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,519:INFO:layer1.0.conv1.weight: Pruned 246 weights.
+2024-04-24 22:47:55,519:INFO:Pruning layer: layer2.0.conv1.weight
+2024-04-24 22:47:55,520:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,520:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,520:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,520:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,520:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,521:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,521:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,521:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,521:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,521:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,521:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,522:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,522:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,522:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,522:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,522:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,523:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,523:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,523:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,523:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,523:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,523:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,524:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,524:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,524:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,524:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,524:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,525:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,525:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,525:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,525:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,525:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,526:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,526:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,526:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,526:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,526:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,527:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,527:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,527:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,527:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,527:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,528:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,528:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,528:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,528:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,528:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,528:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,529:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,529:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,529:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,529:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,529:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,530:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,530:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,530:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,530:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,530:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,530:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,531:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,531:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,531:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,531:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,531:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,532:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,532:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,532:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,532:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,532:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,532:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,533:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,533:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,533:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,533:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,533:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,534:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,534:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,534:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,534:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,534:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,535:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,535:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,535:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,535:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,535:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,535:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,536:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,536:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,536:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,536:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,536:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,537:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,537:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,537:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,537:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,537:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,537:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,538:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,538:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,538:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,538:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,538:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,539:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,539:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,539:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,539:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,539:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,540:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,540:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,540:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,540:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,540:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,540:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,541:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,541:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,541:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,541:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,541:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,542:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,542:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,542:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,542:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,542:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,543:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,543:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,543:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,543:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,543:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,543:INFO:layer2.0.conv1.weight: Pruned 469 weights.
+2024-04-24 22:47:55,544:INFO:Pruning layer: layer3.0.conv1.weight
+2024-04-24 22:47:55,544:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,544:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,544:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,545:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,545:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,545:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,545:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,545:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,546:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,546:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,546:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,546:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,546:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,546:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,547:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,547:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,547:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,547:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,547:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,548:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,548:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,548:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,548:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,548:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,549:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,549:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,549:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,549:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,549:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,549:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,550:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,550:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,550:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,550:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,550:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,551:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,551:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,551:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,551:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,551:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,552:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,552:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,552:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,552:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,552:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,552:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,553:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,553:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,553:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,553:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,553:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,554:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,554:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,554:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,554:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,554:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,554:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,555:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,555:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,555:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,555:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,555:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,556:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,556:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,556:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,556:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,556:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,557:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,557:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,557:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,557:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,557:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,557:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,558:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,558:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,558:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,558:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,558:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,559:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,559:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,559:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,559:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,559:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,560:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,560:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,560:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,560:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,560:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,561:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,561:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,561:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,561:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,561:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,561:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,562:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,562:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,562:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,562:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,562:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,563:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,563:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,563:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,563:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,563:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,563:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,564:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,564:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,564:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,564:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,564:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,565:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,565:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,565:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,565:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,565:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,566:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,566:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,566:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,566:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,566:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,566:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,567:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,567:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,567:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,567:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,567:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,568:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,568:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,568:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,568:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,568:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,568:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,569:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,569:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,569:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,569:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,569:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,570:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,570:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,570:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,570:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,570:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,571:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,571:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,571:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,571:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,571:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,571:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,572:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,572:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,572:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,572:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,572:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,573:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,573:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,573:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,573:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,573:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,574:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,574:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,574:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,574:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,574:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,574:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,575:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,575:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,575:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,575:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,575:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,576:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,576:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,576:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,576:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,576:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,577:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,577:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,577:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,577:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,577:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,577:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,578:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,578:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,578:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,578:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,578:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,579:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,579:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,579:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,579:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,579:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,579:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,580:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,580:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,580:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,580:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,580:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,581:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,581:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,581:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,581:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,581:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,582:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,582:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,582:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,582:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,582:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,582:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,583:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,583:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,583:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,583:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,583:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,584:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,584:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,584:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,584:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,584:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,584:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,585:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,585:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,585:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,585:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,585:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,586:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,586:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,586:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,586:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,586:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,587:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,587:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,587:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,587:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,587:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,587:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,588:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,588:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,588:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,588:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,588:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,589:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,589:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,589:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,589:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,589:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,590:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,590:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,590:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,590:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,590:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,590:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,591:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,591:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,591:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,591:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,591:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,592:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,592:INFO:layer3.0.conv1.weight: Pruned 980 weights.
+2024-04-24 22:47:55,592:INFO:Pruning layer: layer4.0.conv1.weight
+2024-04-24 22:47:55,593:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,593:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,593:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,594:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,594:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,594:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,594:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,594:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,595:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,595:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,595:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,595:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,595:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,596:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,596:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,596:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,596:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,596:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,597:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,597:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,597:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,597:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,597:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,597:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,598:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,598:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,598:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,598:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,598:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,599:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,599:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,599:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,599:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,599:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,600:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,600:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,600:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,600:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,600:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,601:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,601:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,601:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,601:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,601:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,601:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,602:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,602:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,602:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,602:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,602:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,603:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,603:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,603:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,603:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,603:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,604:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,604:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,604:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,604:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,604:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,605:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,605:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,605:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,605:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,605:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,606:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,606:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,606:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,606:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,606:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,606:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,607:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,607:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,607:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,607:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,607:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,608:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,608:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,608:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,608:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,608:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,609:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,609:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,609:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,609:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,609:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,610:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,610:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,610:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,610:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,610:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,610:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,611:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,611:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,611:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,611:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,611:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,612:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,612:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,612:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,612:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,612:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,613:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,613:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,613:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,613:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,613:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,614:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,614:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,614:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,614:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,614:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,614:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,615:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,615:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,615:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,615:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,615:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,616:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,616:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,616:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,616:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,616:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,617:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,617:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,617:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,617:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,617:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,617:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,618:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,618:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,618:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,618:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,618:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,619:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,619:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,619:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,619:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,619:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,620:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,620:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,620:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,620:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,620:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,621:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,621:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,621:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,621:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,621:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,622:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,622:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,622:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,622:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,622:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,623:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,623:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,623:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,623:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,623:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,623:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,624:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,624:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,624:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,624:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,624:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,625:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,625:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,625:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,625:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,625:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,626:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,626:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,626:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,626:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,626:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,626:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,627:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,627:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,627:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,627:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,627:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,628:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,628:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,628:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,628:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,628:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,629:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,629:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,629:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,629:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,629:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,630:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,630:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,630:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,630:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,630:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,630:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,631:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,631:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,631:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,631:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,631:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,632:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,632:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,632:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,632:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,632:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,633:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,633:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,633:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,633:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,633:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,634:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,634:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,634:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,634:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,634:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,634:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,635:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,635:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,635:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,635:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,635:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,636:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,636:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,636:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,636:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,636:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,637:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,637:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,637:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,637:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,637:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,638:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,638:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,638:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,638:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,638:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,639:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,639:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,639:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,639:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,639:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,639:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,640:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,640:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,640:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,640:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,640:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,641:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,641:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,641:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,641:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,641:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,642:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,642:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,642:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,642:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,642:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,642:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,643:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,643:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,643:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,643:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,643:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,644:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,644:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,644:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,644:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,644:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,645:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,645:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,645:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,645:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,645:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,645:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,646:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,646:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,646:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,646:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,646:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,647:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,647:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,647:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,647:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,647:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,648:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,648:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,648:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,648:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,648:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,649:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,649:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,649:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,649:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,649:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,649:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,650:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,650:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,650:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,650:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,651:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,651:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,651:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,651:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,651:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,652:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,652:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,652:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,652:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,652:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,652:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,653:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,653:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,653:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,653:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,653:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,654:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,654:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,654:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,654:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,654:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,655:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,655:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,655:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,655:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,655:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,656:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,656:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,656:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,656:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,656:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,656:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,657:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,657:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,657:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,657:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,657:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,658:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,658:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,658:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,658:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,658:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,659:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,660:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,660:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,660:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,660:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,660:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,661:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,661:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,661:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,661:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,661:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,663:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,664:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,664:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,664:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,664:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,664:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,666:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,667:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,667:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,667:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,667:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,667:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,668:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,668:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,668:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,668:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,668:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,669:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,669:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,669:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,669:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,669:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,670:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,670:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,670:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,670:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,670:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,670:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,671:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,671:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,671:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,671:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,671:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,672:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,672:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,672:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,672:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,672:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,673:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,673:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,673:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,673:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,673:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,674:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,674:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,674:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,674:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,674:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,674:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,675:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,675:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,675:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,675:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,675:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,676:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,676:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,676:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,676:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,676:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,677:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,677:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,677:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,677:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,677:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,677:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,678:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,678:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,678:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,678:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,678:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,679:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,679:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,679:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,679:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,679:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,680:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,680:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,680:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,680:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,680:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,681:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,681:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,681:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,681:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,681:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,682:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,682:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,682:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,682:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,682:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,683:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,683:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,683:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,683:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,683:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,684:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,684:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,684:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,684:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,684:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,684:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,685:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,685:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,685:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,685:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,685:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,686:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,686:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,686:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,686:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,686:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,687:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,687:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,687:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,687:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,687:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,688:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,688:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,688:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,688:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,688:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,688:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,689:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,689:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,689:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,689:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,689:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,690:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,690:INFO:Using Prim's algorithm for MST weight
+2024-04-24 22:47:55,690:INFO:layer4.0.conv1.weight: Pruned 2025 weights.
+2024-04-24 22:47:55,691:INFO:Total pruned weights in the model: 3720
+2024-04-24 22:47:57,771:INFO:Epochs: 100
+2024-04-24 22:47:57,772:INFO:Target layers: ['layer1.0.conv1.weight', 'layer2.0.conv1.weight', 'layer3.0.conv1.weight', 'layer4.0.conv1.weight']
+2024-04-24 22:47:57,772:INFO:Original Model: Accuracy: 75.27, Inference Time: 1.811220645904541, FLOPs: 3316369473536.0, Non-zero Params: 11689512
+2024-04-24 22:47:57,772:INFO:Pruned Model (prune_model_weights): Accuracy: 35.1, Inference Time: 2.063547134399414, FLOPs: 3187527139328.0, Non-zero Params: 10999912
