@@ -1,0 +1,41 @@
+2024-04-25 19:00:06,328:INFO:Logging setup complete - logging to: ResNet18/log\2024-04-25-19-00-06.log
+2024-04-25 19:00:06,328:INFO:Starting the program
+2024-04-25 19:00:06,328:INFO:Arguments: Namespace(dataset='MNIST', algorithm='prim', pruning_method='prune_model_filters_by_importance', target_layers=['layer1.1.conv2.weight', 'layer2.1.conv2.weight', 'layer3.1.conv2.weight', 'layer4.1.conv2.weight'], epochs=20)
+2024-04-25 19:00:06,378:INFO:Dataset: MNIST
+2024-04-25 19:00:23,997:INFO:Epoch 1, Loss: 0.0012679370120167732
+2024-04-25 19:00:39,528:INFO:Epoch 2, Loss: 0.007202018518000841
+2024-04-25 19:00:55,082:INFO:Epoch 3, Loss: 0.0026089760940521955
+2024-04-25 19:01:10,650:INFO:Epoch 4, Loss: 0.0009013521485030651
+2024-04-25 19:01:26,223:INFO:Epoch 5, Loss: 0.2249162197113037
+2024-04-25 19:01:41,775:INFO:Epoch 6, Loss: 0.03203915059566498
+2024-04-25 19:01:57,339:INFO:Epoch 7, Loss: 1.3328484783414751e-05
+2024-04-25 19:02:12,921:INFO:Epoch 8, Loss: 0.022578096017241478
+2024-04-25 19:02:28,494:INFO:Epoch 9, Loss: 0.0005391977028921247
+2024-04-25 19:02:44,446:INFO:Epoch 10, Loss: 0.12146297842264175
+2024-04-25 19:03:00,045:INFO:Epoch 11, Loss: 0.008708332665264606
+2024-04-25 19:03:15,630:INFO:Epoch 12, Loss: 0.001175170880742371
+2024-04-25 19:03:31,176:INFO:Epoch 13, Loss: 6.006488183629699e-05
+2024-04-25 19:03:46,716:INFO:Epoch 14, Loss: 0.0012139666359871626
+2024-04-25 19:04:02,271:INFO:Epoch 15, Loss: 0.0009906089399009943
+2024-04-25 19:04:17,811:INFO:Epoch 16, Loss: 0.0010199056705459952
+2024-04-25 19:04:33,372:INFO:Epoch 17, Loss: 6.35805117781274e-05
+2024-04-25 19:04:48,955:INFO:Epoch 18, Loss: 0.0017893522744998336
+2024-04-25 19:05:04,494:INFO:Epoch 19, Loss: 0.0001276800176128745
+2024-04-25 19:05:20,031:INFO:Epoch 20, Loss: 0.06279675662517548
+2024-04-25 19:05:22,274:INFO:Pruning layer: layer1.1.conv2.weight
+2024-04-25 19:08:09,627:INFO:Using Prim's algorithm for MST filter in layer layer1.1.conv2.weight
+2024-04-25 19:08:09,627:INFO:layer1.1.conv2.weight: Pruned 54 filters.
+2024-04-25 19:08:09,628:INFO:Pruning layer: layer2.1.conv2.weight
+2024-04-25 19:13:42,813:INFO:Using Prim's algorithm for MST filter in layer layer2.1.conv2.weight
+2024-04-25 19:13:42,814:INFO:layer2.1.conv2.weight: Pruned 113 filters.
+2024-04-25 19:13:42,815:INFO:Pruning layer: layer3.1.conv2.weight
+2024-04-25 19:24:46,528:INFO:Using Prim's algorithm for MST filter in layer layer3.1.conv2.weight
+2024-04-25 19:24:46,528:INFO:layer3.1.conv2.weight: Pruned 210 filters.
+2024-04-25 19:24:46,531:INFO:Pruning layer: layer4.1.conv2.weight
+2024-04-25 19:46:51,722:INFO:Using Prim's algorithm for MST filter in layer layer4.1.conv2.weight
+2024-04-25 19:46:51,722:INFO:layer4.1.conv2.weight: Pruned 448 filters.
+2024-04-25 19:46:51,729:INFO:Total pruned filters in the model: 825
+2024-04-25 19:46:54,338:INFO:Epochs: 20
+2024-04-25 19:46:54,338:INFO:Target layers: ['layer1.1.conv2.weight', 'layer2.1.conv2.weight', 'layer3.1.conv2.weight', 'layer4.1.conv2.weight']
+2024-04-25 19:46:54,339:INFO:Original Model: Accuracy: 99.31, Inference Time: 2.136355400085449, FLOPs: 3316369473536.0, Non-zero Params: 11689512
+2024-04-25 19:46:54,339:INFO:Pruned Model (prune_model_filters_by_importance): Accuracy: 76.67, Inference Time: 2.581794500350952, FLOPs: 2457998606336.0, Non-zero Params: 8980008
