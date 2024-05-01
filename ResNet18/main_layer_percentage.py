@@ -346,16 +346,42 @@ def main(args):
     logging.info("Starting the program")
     logging.info("Arguments: %s", args)
 
-
     seed = 0
     set_seed(seed)
 
     train_loader, test_loader = load_data(args.dataset)
     model = initialize_model()
 
-    trained_model = train_model(model, train_loader, epochs=args.epochs)
+    # 저장된 모델 경로 설정
+    save_directory = 'saved_models/Resnet18'
+    if not os.path.exists(save_directory):
+        os.makedirs(save_directory)
+    
+    filename = f"original_model_{args.dataset}.pth"
+    save_path = os.path.join(save_directory, filename)
+
+    # 첫 번째 실행 시에만 모델을 훈련하고 저장
+    if not os.path.exists(save_path):
+        trained_model = train_model(model, train_loader, epochs=args.epochs)
+        torch.save(trained_model.state_dict(), save_path)
+        print(f"Original model weights saved to {save_path}")
+    else:
+        # 저장된 모델 불러오기
+        trained_model = initialize_model()
+        trained_model.load_state_dict(torch.load(save_path))
+        trained_model.eval()
+        print(f"Original model weights loaded from {save_path}")
 
     original_model = copy.deepcopy(trained_model)
+
+    save_directory = 'saved_models/Resnet18'
+    if not os.path.exists(save_directory):
+        os.makedirs(save_directory)
+    
+    filename = f"original_model_{args.dataset}.pth"
+    save_path = os.path.join(save_directory, filename)
+    torch.save(trained_model.state_dict(), save_path)
+    print(f"Original model weights saved to {save_path}")
 
     # 평가지표 저장
     results = {}

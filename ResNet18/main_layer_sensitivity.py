@@ -305,7 +305,7 @@ def main(args):
         pruning_results[target_layer] = layer_results
 
     # 결과 딕셔너리 저장
-    file_name = f"pruning_results_{args.algorithm}_{args.dataset}_{args.prune_method}.json"
+    file_name = f"ResNet18: pruning_results_{args.algorithm}_{args.dataset}_{args.prune_method}.json"
     with open(file_name, 'w') as f:
         json.dump(pruning_results, f)
 
@@ -330,7 +330,7 @@ def plot_pruning_results(pruning_results, algorithm, dataset, prune_method):
         color = colors[i % num_layers]
         plt.plot(pruning_percentages, accuracies, label=layer_name, marker='o', linestyle='-', color=color)
 
-    plt.title(f"Pruning Accuracy by Layer and Pruning Percentage ({algorithm})")
+    plt.title(f"ResNet18: Pruning Accuracy by Layer and Pruning Percentage ({algorithm})")
     plt.xlabel("Pruning Percentage")
     plt.ylabel("Accuracy (%)")
     plt.legend()
