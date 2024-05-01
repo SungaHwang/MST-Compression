@@ -103,8 +103,8 @@ def train_model(model, train_loader, epochs=100, lr=0.01, momentum=0.9, patience
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.5)  # Learning rate scheduler
     best_val_accuracy = 0
     no_improvement_count = 0  # For early stopping
-    checkpoint_dir = 'checkpoints/VGG16'
-    os.makedirs(checkpoint_dir, exist_ok=True)
+    #checkpoint_dir = 'checkpoints/VGG16'
+    #os.makedirs(checkpoint_dir, exist_ok=True)
 
     for epoch in range(epochs):
         model.train()
@@ -119,7 +119,7 @@ def train_model(model, train_loader, epochs=100, lr=0.01, momentum=0.9, patience
         logging.info(f"Epoch {epoch + 1}, Loss: {loss.item()}")
 
         # Save checkpoint every epoch
-        torch.save(model.state_dict(), f'{checkpoint_dir}/checkpoint_epoch_{epoch}.pth')
+        #torch.save(model.state_dict(), f'{checkpoint_dir}/checkpoint_epoch_{epoch}.pth')
 
         scheduler.step()  # Step the learning rate scheduler
 
