@@ -314,7 +314,7 @@ def main(args):
 
 def generate_n_colors(n):
     # Generate n distinct colors
-    cmap = plt.get_cmap('viridis', n)
+    cmap = plt.get_cmap('tab20')
     colors = [cmap(i) for i in range(n)]
     return colors
 
