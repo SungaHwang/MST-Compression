@@ -322,22 +322,22 @@ def evaluate_model_full(model, test_loader, device):
 # 프루닝 비율 딕셔너리 정의
 pruning_percents = {
     'conv1.weight' : 0,
-    'layer1.0.conv1.weight': 0,
-    'layer1.0.conv2.weight': 0,
-    'layer1.1.conv1.weight': 0,
-    'layer1.1.conv2.weight': 0,
-    'layer2.0.conv1.weight': 0,
-    'layer2.0.conv2.weight': 0,
-    'layer2.1.conv1.weight': 0,
-    'layer2.1.conv2.weight': 0,
-    'layer3.0.conv1.weight': 10,
+    'layer1.0.conv1.weight': 5,
+    'layer1.0.conv2.weight': 5,
+    'layer1.1.conv1.weight': 5,
+    'layer1.1.conv2.weight': 5,
+    'layer2.0.conv1.weight': 5,
+    'layer2.0.conv2.weight': 5,
+    'layer2.1.conv1.weight': 5,
+    'layer2.1.conv2.weight': 10,
+    'layer3.0.conv1.weight': 5,
     'layer3.0.conv2.weight': 10,
     'layer3.1.conv1.weight': 30,
     'layer3.1.conv2.weight': 30,
     'layer4.0.conv1.weight': 10,
     'layer4.0.conv2.weight': 10,
     'layer4.1.conv1.weight': 30,
-    'layer4.1.conv2.weight': 30
+    'layer4.1.conv2.weight': 50
 }
 
 
