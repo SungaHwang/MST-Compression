@@ -16,6 +16,8 @@ python C:/MST-Compression/VGG16/main_layer_sensitivity.py --dataset CIFAR10 --al
 python C:/MST-Compression/VGG16/main_layer_sensitivity.py --dataset CIFAR10 --algorithm prim --epochs 100
 python C:/MST-Compression/VGG16/main_layer_sensitivity.py --dataset CIFAR10 --algorithm kruskal --prune_method filters --epochs 100
 python C:/MST-Compression/VGG16/main_layer_sensitivity.py --dataset CIFAR10 --algorithm prim --prune_method filters --epochs 100
+python C:/MST-Compression/Transformer/Fine_tuning.py --model_name bert
+python C:/MST-Compression/Transformer/Fine_tuning.py --model_name RoBERTa
 
 # 환경 비활성화
 deactivate
