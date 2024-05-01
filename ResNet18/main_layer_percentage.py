@@ -182,23 +182,23 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
     total_pruned_filters = 0
-    for name, param in model.named_parameters():
+    for name, module in model.named_modules():
         if name in target_layers:
             logging.info(f"Pruning layer: {name}")
             importance_scores = compute_layer_importance(model, train_loader, test_loader, name)
-            num_filters = len(importance_scores)
-
+            num_filters = module.out_channels
+            
             G = nx.Graph()
             for i in range(num_filters):
                 for j in range(i + 1, num_filters):
                     G.add_edge(i, j, weight=-np.abs(importance_scores[i] - importance_scores[j]))
-
+            
             mst = nx.minimum_spanning_tree(G, weight='weight', algorithm=algorithm)
             sorted_edges = sorted(mst.edges(data=True), key=lambda x: x[2]['weight'], reverse=True)
             
             num_filters_to_prune = int(num_filters * pruning_percent / 100)
             pruned_filters = set()
-
+            
             # Remove edges and count unique filters until we reach the target number
             for edge in sorted_edges[::-1]:
                 if len(pruned_filters) < num_filters_to_prune:
@@ -207,15 +207,35 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
                     break
 
             pruned_filters = list(pruned_filters)
-            mask = torch.ones(num_filters, dtype=torch.float32, device=device)
-            mask[pruned_filters] = 0
-            param.data *= mask[:, None, None, None]
+            new_module = prune_conv_layer(module, pruned_filters)
+            replace_layer(model, name, new_module)
 
             logging.info(f"{name}: Pruned {len(pruned_filters)} filters at {pruning_percent}%.")
             total_pruned_filters += len(pruned_filters)
 
     logging.info(f"Total pruned filters in the model: {total_pruned_filters}")
     return model
+
+def prune_conv_layer(layer, filters_to_remove):
+    new_out_channels = layer.out_channels - len(filters_to_remove)
+    new_weight = np.delete(layer.weight.detach().cpu().numpy(), filters_to_remove, axis=0)
+    if layer.bias is not None:
+        new_bias = np.delete(layer.bias.detach().cpu().numpy(), filters_to_remove)
+    else:
+        new_bias = None
+
+    # Creating new layer
+    new_layer = nn.Conv2d(in_channels=layer.in_channels,
+                          out_channels=new_out_channels,
+                          kernel_size=layer.kernel_size,
+                          stride=layer.stride,
+                          padding=layer.padding,
+                          bias=(new_bias is not None))
+    new_layer.weight = nn.Parameter(torch.tensor(new_weight, dtype=torch.float32))
+    if new_bias is not None:
+        new_layer.bias = nn.Parameter(torch.tensor(new_bias, dtype=torch.float32))
+
+    return new_layer
 
 
 
@@ -351,7 +371,7 @@ if __name__ == "__main__":
     parser.add_argument("--target_layers", nargs="+",
                         default=['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight',
                                  'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight',
-                                 'layer2.0.conv2.weight', 'layer2.1.conv1.weight', 'layer2.1.conv2.weight',
+                                 'layer2.0.conv2.weight', 'layer2.s1.conv1.weight', 'layer2.1.conv2.weight',
                                  'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight',
                                  'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight',
                                  'layer4.1.conv1.weight', 'layer4.1.conv2.weight'],
