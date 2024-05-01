@@ -20,8 +20,7 @@ from torch.optim.lr_scheduler import StepLR
 from sklearn.metrics import accuracy_score
 from torchvision.models import vgg16
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(device)
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # 로깅 설정
 def setup_logging():
@@ -90,14 +89,12 @@ def load_data(dataset_name):
 # 모델 정의 및 초기화
 def initialize_model():
     model = vgg16(pretrained=False)
+    model.to(device)
     return model
 
 
 # 모델 학습
 def train_model(model, train_loader, epochs=100, lr=0.01, momentum=0.9, patience=5):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(device)
-    model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.5)  # Learning rate scheduler
@@ -188,8 +185,6 @@ def prune_model_weights(model, target_layers, pruning_percent=10, algorithm='kru
 
 # 프루닝 방법 2: 필터 중요도에 기반한 프루닝
 def prune_model_filters_by_importance(model, train_loader, test_loader, target_layers, pruning_percent=10, algorithm='kruskal'):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
     total_pruned_filters = 0
     for name, param in model.named_parameters():
         if name.endswith('.weight'):  # conv 레이어에 대한 필터만 선택
@@ -228,8 +223,6 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
 
 
 def compute_layer_importance(model, train_loader, test_loader, layer_name):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
     original_accuracy = evaluate_model(model, test_loader)
     importance_scores = []
 
@@ -248,7 +241,6 @@ def compute_layer_importance(model, train_loader, test_loader, layer_name):
 
 # 모델 평가
 def evaluate_model(model, test_loader):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.eval()
     correct = 0
     total = 0
@@ -264,6 +256,7 @@ def evaluate_model(model, test_loader):
 
 
 def main(args):
+    print(device)
     setup_logging()
     logging.info("Starting the program")
     logging.info("Arguments: %s", args)
@@ -274,7 +267,6 @@ def main(args):
 
     # 원본 모델 초기화
     original_model = initialize_model()
-    original_model.to(device)  # 디바이스 설정 (GPU 또는 CPU)
 
     trained_model = train_model(original_model, train_loader, args.epochs)
 

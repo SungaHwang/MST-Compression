@@ -15,6 +15,7 @@ import copy
 import random
 import argparse
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # 로깅 설정
 def setup_logging():
@@ -65,14 +66,12 @@ def load_data(dataset_name):
 # 모델 정의 및 초기화
 def initialize_model():
     model = resnet18(pretrained=False)
+    model.to(device)
     return model
 
 
 # 모델 학습
 def train_model(model, train_loader, epochs=100):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(device)
-    model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
     model.train()
@@ -161,8 +160,6 @@ def prune_model_weights(model, target_layers, pruning_percent=10, algorithm='kru
 # 2
 # 프루닝 방법 2: 필터 중요도에 기반한 프루닝
 def prune_model_filters_by_importance(model, train_loader, test_loader, target_layers, pruning_percents= 10, algorithm='kruskal'):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
     total_pruned_filters = 0
     for name, param in model.named_parameters():
         if name in target_layers:
@@ -200,8 +197,6 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
     return model
 
 def compute_layer_importance(model, train_loader, test_loader, layer_name):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
     original_accuracy = evaluate_model(model, test_loader)
     importance_scores = []
 
@@ -220,8 +215,6 @@ def compute_layer_importance(model, train_loader, test_loader, layer_name):
 
 # 성능 평가
 def evaluate_model(model, test_loader):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
     model.eval()
     correct = 0
     total = 0
@@ -239,10 +232,8 @@ def evaluate_model(model, test_loader):
 
 import time
 
-def compute_flops(model, input_size=(1, 3, 224, 224), device = 'cuda'):
+def compute_flops(model, input_size=(1, 3, 224, 224)):
     model.eval()
-    device = torch.device(device if torch.cuda.is_available() else "cpu")
-    model.to(device)
     input = torch.randn(input_size).to(device)
 
     total_flops = 0  # FLOPs를 저장할 변수 초기화
@@ -291,8 +282,7 @@ def count_nonzero_parameters(model):
     return nonzero_count
 
 
-def evaluate_model_full(model, test_loader, device):
-    model.to(device)
+def evaluate_model_full(model, test_loader):
     model.eval()
     torch.cuda.empty_cache()
     # Accuracy
@@ -342,6 +332,7 @@ pruning_percents = {
 
 
 def main(args):
+    print(device)
     setup_logging()
     logging.info("Starting the program")
     logging.info("Arguments: %s", args)
@@ -385,8 +376,6 @@ def main(args):
 
     # 평가지표 저장
     results = {}
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(device)
     
     # 원본 모델 평가
     original_model = copy.deepcopy(trained_model)

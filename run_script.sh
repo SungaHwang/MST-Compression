@@ -18,4 +18,4 @@ python C:/MST-Compression/VGG16/main_layer_sensitivity.py --dataset CIFAR10 --al
 python C:/MST-Compression/VGG16/main_layer_sensitivity.py --dataset CIFAR10 --algorithm prim --prune_method filters --epochs 100
 
 # 환경 비활성화
-conda deactivate
+deactivate
