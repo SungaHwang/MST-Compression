@@ -1,0 +1,41 @@
+2024-05-03 02:51:31,327:INFO:Logging setup complete - logging to: ResNet18/log\2024-05-03-02-51-31.log
+2024-05-03 02:51:31,327:INFO:Starting the program
+2024-05-03 02:51:31,327:INFO:Arguments: Namespace(dataset='CIFAR10', algorithm='prim', pruning_method='prune_model_filters_by_importance', target_layers=['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight', 'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight', 'layer2.0.conv2.weight', 'layer2.s1.conv1.weight', 'layer2.1.conv2.weight', 'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight', 'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight', 'layer4.1.conv1.weight', 'layer4.1.conv2.weight'], epochs=100)
+2024-05-03 02:51:32,452:INFO:Dataset: CIFAR10
+2024-05-03 02:51:36,497:INFO:Pruning layer: conv1.weight
+2024-05-03 02:54:00,267:INFO:conv1.weight: Pruned 0 filters at 0%.
+2024-05-03 02:54:00,267:INFO:Pruning layer: layer1.0.conv1.weight
+2024-05-03 02:56:25,733:INFO:layer1.0.conv1.weight: Pruned 3 filters at 5%.
+2024-05-03 02:56:25,733:INFO:Pruning layer: layer1.0.conv2.weight
+2024-05-03 02:58:53,598:INFO:layer1.0.conv2.weight: Pruned 3 filters at 5%.
+2024-05-03 02:58:53,599:INFO:Pruning layer: layer1.1.conv1.weight
+2024-05-03 03:01:18,503:INFO:layer1.1.conv1.weight: Pruned 3 filters at 5%.
+2024-05-03 03:01:18,503:INFO:Pruning layer: layer1.1.conv2.weight
+2024-05-03 03:03:45,029:INFO:layer1.1.conv2.weight: Pruned 3 filters at 5%.
+2024-05-03 03:03:45,029:INFO:Pruning layer: layer2.0.conv1.weight
+2024-05-03 03:08:32,392:INFO:layer2.0.conv1.weight: Pruned 6 filters at 5%.
+2024-05-03 03:08:32,392:INFO:Pruning layer: layer2.0.conv2.weight
+2024-05-03 03:13:20,212:INFO:layer2.0.conv2.weight: Pruned 6 filters at 5%.
+2024-05-03 03:13:20,212:INFO:Pruning layer: layer2.1.conv2.weight
+2024-05-03 03:18:08,056:INFO:layer2.1.conv2.weight: Pruned 12 filters at 10%.
+2024-05-03 03:18:08,056:INFO:Pruning layer: layer3.0.conv1.weight
+2024-05-03 03:27:40,958:INFO:layer3.0.conv1.weight: Pruned 12 filters at 5%.
+2024-05-03 03:27:40,959:INFO:Pruning layer: layer3.0.conv2.weight
+2024-05-03 03:37:17,824:INFO:layer3.0.conv2.weight: Pruned 25 filters at 10%.
+2024-05-03 03:37:17,824:INFO:Pruning layer: layer3.1.conv1.weight
+2024-05-03 03:46:50,322:INFO:layer3.1.conv1.weight: Pruned 76 filters at 30%.
+2024-05-03 03:46:50,322:INFO:Pruning layer: layer3.1.conv2.weight
+2024-05-03 03:56:22,538:INFO:layer3.1.conv2.weight: Pruned 76 filters at 30%.
+2024-05-03 03:56:22,538:INFO:Pruning layer: layer4.0.conv1.weight
+2024-05-03 04:15:31,751:INFO:layer4.0.conv1.weight: Pruned 51 filters at 10%.
+2024-05-03 04:15:31,751:INFO:Pruning layer: layer4.0.conv2.weight
+2024-05-03 04:34:40,320:INFO:layer4.0.conv2.weight: Pruned 51 filters at 10%.
+2024-05-03 04:34:40,320:INFO:Pruning layer: layer4.1.conv1.weight
+2024-05-03 04:53:47,002:INFO:layer4.1.conv1.weight: Pruned 153 filters at 30%.
+2024-05-03 04:53:47,002:INFO:Pruning layer: layer4.1.conv2.weight
+2024-05-03 05:13:05,859:INFO:layer4.1.conv2.weight: Pruned 256 filters at 50%.
+2024-05-03 05:13:05,859:INFO:Total pruned filters in the model: 736
+2024-05-03 05:13:08,199:INFO:Epochs: 100
+2024-05-03 05:13:08,199:INFO:Target layers: ['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight', 'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight', 'layer2.0.conv2.weight', 'layer2.s1.conv1.weight', 'layer2.1.conv2.weight', 'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight', 'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight', 'layer4.1.conv1.weight', 'layer4.1.conv2.weight']
+2024-05-03 05:13:08,199:INFO:Original Model: Accuracy: 76.08, Inference Time: 2.9062538146972656, FLOPs: 3316369473536.0, Non-zero Params: 11689512
+2024-05-03 05:13:08,200:INFO:Pruned Model (prune_model_filters_by_importance): Accuracy: 70.31, Inference Time: 2.3068361282348633, FLOPs: 2604441878528.0, Non-zero Params: 8999592
