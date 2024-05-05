@@ -1,2 +1,2 @@
 # Method
-![MST-fig1_600](https://github.com/SungaHwang/MST-Compression/assets/74399508/97270b72-888e-4f96-9d76-23d654091b12)
+![MST-fig1](https://github.com/SungaHwang/MST-Compression/assets/74399508/96e216ab-9d3b-408c-8f8a-591a49cccefd)
