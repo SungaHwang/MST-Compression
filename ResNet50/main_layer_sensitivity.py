@@ -18,6 +18,12 @@ import matplotlib.pyplot as plt
 import json
 from torch.optim.lr_scheduler import StepLR
 from sklearn.metrics import accuracy_score
+from torch.optim.lr_scheduler import MultiStepLR
+from datasets import load_dataset, Features, ClassLabel, Image
+import torchvision.transforms as transforms
+from torchvision.transforms.functional import to_pil_image
+from torch.utils.data import DataLoader
+
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -48,31 +54,52 @@ def set_seed(seed):
 
 
 # 데이터 로딩
+
 def load_data(dataset_name):
     if dataset_name == "MNIST":
-        transform = transforms.Compose(
-            [transforms.Grayscale(num_output_channels=3), transforms.ToTensor(),
-             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        transform = transforms.Compose([
+            transforms.Grayscale(num_output_channels=3),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+        ])
         train_set = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
         test_set = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
     elif dataset_name == "CIFAR10":
-        transform = transforms.Compose([transforms.ToTensor(),
-                                        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+        ])
         train_set = datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
         test_set = datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
     elif dataset_name == "ImageNet":
-        transform = transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor(),
-                                        transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                                             std=[0.229, 0.224, 0.225])])
-        train_set = datasets.ImageFolder(root='./data/train', transform=transform)
-        test_set = datasets.ImageFolder(root='./data/val', transform=transform)
+        # Load dataset from Hugging Face
+        dataset = load_dataset('imagenet-1k')
+
+        # Define the transformations
+        transform = transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        ])
+
+        # Define a function to apply transformations
+        def transform_features(example_batch):
+            example_batch['image'] = [transform(to_pil_image(img)) for img in example_batch['image']]
+            return example_batch
+
+        # Set transformations
+        dataset['train'].set_transform(transform_features)
+        dataset['validation'].set_transform(transform_features)
+
+        # Create DataLoaders
+        train_loader = DataLoader(dataset['train'], batch_size=64, shuffle=True)
+        test_loader = DataLoader(dataset['validation'], batch_size=64, shuffle=False)
     else:
         raise ValueError("Unsupported dataset: {}".format(dataset_name))
 
     logging.info("Dataset: %s", dataset_name)
 
-    train_loader = torch.utils.data.DataLoader(train_set, batch_size=64, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_set, batch_size=64, shuffle=False)
     return train_loader, test_loader
 
 
@@ -84,18 +111,18 @@ def initialize_model():
 
 
 # 모델 학습
-def train_model(model, train_loader, epochs=100, lr=0.01, momentum=0.9, patience=5):
+def train_model(model, train_loader, epochs=100, lr=0.1, momentum=0.9, patience=10):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
-    scheduler = StepLR(optimizer, step_size=10, gamma=0.5)  # Learning rate scheduler
-    best_val_accuracy = 0
-    no_improvement_count = 0  # For early stopping
-    #checkpoint_dir = 'checkpoints/ResNet18'
-    #os.makedirs(checkpoint_dir, exist_ok=True)
+    scheduler = MultiStepLR(optimizer, milestones=[50, 75], gamma=0.1)  # Adjust learning rate at these epochs
+    best_loss = float('inf')
+    no_improvement_count = 0
     
     for epoch in range(epochs):
         model.train()
+        total_loss = 0
         for images, labels in train_loader:
             images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad()
@@ -103,12 +130,22 @@ def train_model(model, train_loader, epochs=100, lr=0.01, momentum=0.9, patience
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
+            total_loss += loss.item()
+        
+        average_loss = total_loss / len(train_loader)
+        logging.info(f"Epoch {epoch + 1}, Loss: {average_loss}")
+        
+        if average_loss < best_loss:
+            best_loss = average_loss
+            no_improvement_count = 0
+            # Save best model checkpoint if needed
+        else:
+            no_improvement_count += 1
 
-        logging.info(f"Epoch {epoch + 1}, Loss: {loss.item()}")
-
-        # Save checkpoint every epoch
-        #torch.save(model.state_dict(), f'{checkpoint_dir}/checkpoint_epoch_{epoch}.pth')
-
+        if no_improvement_count >= patience:
+            print(f"No improvement for {patience} epochs, stopping training.")
+            break
+        
         scheduler.step()
 
     return model
@@ -238,7 +275,6 @@ def compute_layer_importance(model, train_loader, test_loader, layer_name):
 
 # 모델 평가
 def evaluate_model(model, test_loader):
-    model = model.to(device)
     model.eval()
     correct = 0
     total = 0
@@ -246,13 +282,11 @@ def evaluate_model(model, test_loader):
         for images, labels in test_loader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
-            _, predicted = torch.max(outputs.data, 1)
+            predicted = outputs.argmax(dim=1, keepdim=True)
+            correct += predicted.eq(labels.view_as(predicted)).sum().item()
             total += labels.size(0)
-            correct += (predicted == labels).sum().item()
-    accuracy = 100 * correct / total
-    #logging.info('Accuracy of the network on the test images: %d %%' % (accuracy))
+    accuracy = 100.0 * correct / total
     return accuracy
-
 
 def main(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -266,22 +300,26 @@ def main(args):
 
     train_loader, test_loader = load_data(args.dataset)
 
-    model_path = f'{args.dataset}_ResNet50_trained_model.pth'
-    if os.path.exists(model_path):
-        # 저장된 모델이 존재하면 불러오기
-        logging.info("Loading trained model...")
-        original_model = initialize_model()
-        original_model.load_state_dict(torch.load(model_path))
+
+    if args.dataset == "ImageNet":
+        # ImageNet 데이터셋에 대해서만 사전 학습된 모델을 불러옴
+        logging.info("Loading pretrained model for ImageNet...")
+        original_model = resnet50(pretrained=True)
         original_model.to(device)
     else:
-        # 저장된 모델이 없으면 새로 학습
-        logging.info("No trained model found, starting training...")
-        original_model = initialize_model()
-        trained_model = train_model(original_model, train_loader, args.epochs)
-        torch.save(trained_model.state_dict(), model_path)
-        original_model = trained_model
-    
-    original_model.to(device)
+        # 다른 데이터셋은 새로 학습
+        model_path = f'{args.dataset}_ResNet50_trained_model.pth'
+        if os.path.exists(model_path):
+            logging.info("Loading trained model...")
+            original_model = resnet50(pretrained=False)
+            original_model.load_state_dict(torch.load(model_path))
+            original_model.to(device)
+        else:
+            logging.info("No trained model found, starting training...")
+            original_model = resnet50(pretrained=False)
+            original_model = train_model(original_model, train_loader, args.epochs)
+            torch.save(original_model.state_dict(), model_path)
+        original_model.to(device)
 
     pruning_results = {}
 
@@ -355,7 +393,7 @@ def plot_pruning_results(pruning_results, algorithm, dataset, prune_method):
         
         ax.set_title(group_name, fontsize=8)
         ax.set_xlabel("Pruning Percentage", fontsize=8)
-        ax.set_ylabel("Accuracy (%)", fontsize=8)
+        ax.set_ylabel("Top1 Accuracy (%)", fontsize=8)
         ax.legend(fontsize=6)
         ax.grid(True)
         ax.set_xticks(np.arange(0, 101, 10))
