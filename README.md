@@ -14,7 +14,7 @@ Procedure PruneWeights(M, L, P, A)
     total_pruned ← 0
     for each (name, param) in M.named_parameters() do
       if name ∈ L then
-        weights ← param.data.cpu().numpy()
+        weights ← param.data.numpy()
         F, C, H, W ← shape(weights)
         layer_pruned ← 0
         for f = 1 to F do
@@ -35,7 +35,7 @@ Procedure PruneWeights(M, L, P, A)
             weights[f, c, i, j] ← 0
             layer_pruned ← layer_pruned + 1
         total_pruned ← total_pruned + layer_pruned
-        param.data ← torch.from_numpy(weights).to(param.device)
+        param.data ← torch.from_numpy(weights)
     return M
   End
 ```
