@@ -1,13 +1,17 @@
 # Method
 ![MST-fig1](https://github.com/SungaHwang/MST-Compression/assets/74399508/96e216ab-9d3b-408c-8f8a-591a49cccefd)
 
+
 ## Pruning Algorithm
+
 ### Algorithm 1: Weight-Based MST Pruning
 Below is the pseudocode for the weight-based MST pruning algorithm used in our model compression. The process leverages a minimum spanning tree (MST) to identify and remove the weakest connections within each layer of the network.
 
 ```plaintext
-Inputs: M - Original Model, L - List of layer names for pruning, P - Percentage of weights to be pruned in each layer, A - Algorithm for MST calculation
-Output: M - Compressed model
+Inputs:
+M - Original Model, L - List of layer names for pruning, P - Percentage of weights to be pruned in each layer, A - Algorithm for MST calculation
+Output:
+M - Compressed model
 
 Procedure PruneWeights(M, L, P, A)
   Begin
@@ -52,12 +56,10 @@ Begin
             edges ← sort(T.edges(data=True), by weight, descending)
             prune_num ← ⌈(P / 100) * num⌉
             prune_set <- SelectWeakestNodes(T, prune_num)
-mask ← tensor of ones(num, dtype=float32)
+            mask ← tensor of ones(num, dtype=float32)
             mask[prune_set] ← 0
             param.data *= mask.reshape(1, num, 1, 1)
             total_pruned += size(prune_set)
     return M
 End
-
 ```
-
