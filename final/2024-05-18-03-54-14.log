@@ -1,0 +1,44 @@
+2024-05-18 03:54:14,973:INFO:Logging setup complete - logging to: ResNet18/log/final/2024-05-18-03-54-14.log
+2024-05-18 03:54:14,973:INFO:Starting the program
+2024-05-18 03:54:14,973:INFO:Arguments: Namespace(algorithm='kruskal', dataset='MNIST', epochs=100, pruning_method='prune_model_filters_by_importance', target_layers=['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight', 'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight', 'layer2.0.conv2.weight', 'layer2.1.conv1.weight', 'layer2.1.conv2.weight', 'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight', 'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight', 'layer4.1.conv1.weight', 'layer4.1.conv2.weight'])
+2024-05-18 03:54:15,005:INFO:Dataset: MNIST
+2024-05-18 03:54:20,434:INFO:Pruning layer: conv1.weight
+2024-05-18 03:58:37,102:INFO:conv1.weight: Pruned 0 filters at 0%.
+2024-05-18 03:58:37,102:INFO:Pruning layer: layer1.0.conv1.weight
+2024-05-18 04:02:47,437:INFO:layer1.0.conv1.weight: Pruned 0 filters at 0%.
+2024-05-18 04:02:47,438:INFO:Pruning layer: layer1.0.conv2.weight
+2024-05-18 04:06:34,839:INFO:layer1.0.conv2.weight: Pruned 0 filters at 0%.
+2024-05-18 04:06:34,840:INFO:Pruning layer: layer1.1.conv1.weight
+2024-05-18 04:10:22,979:INFO:layer1.1.conv1.weight: Pruned 3 filters at 5%.
+2024-05-18 04:10:22,979:INFO:Pruning layer: layer1.1.conv2.weight
+2024-05-18 04:14:09,612:INFO:layer1.1.conv2.weight: Pruned 3 filters at 5%.
+2024-05-18 04:14:09,613:INFO:Pruning layer: layer2.0.conv1.weight
+2024-05-18 04:21:41,202:INFO:layer2.0.conv1.weight: Pruned 0 filters at 0%.
+2024-05-18 04:21:41,202:INFO:Pruning layer: layer2.0.conv2.weight
+2024-05-18 04:29:12,487:INFO:layer2.0.conv2.weight: Pruned 0 filters at 0%.
+2024-05-18 04:29:12,488:INFO:Pruning layer: layer2.1.conv1.weight
+2024-05-18 04:36:43,545:INFO:layer2.1.conv1.weight: Pruned 12 filters at 10%.
+2024-05-18 04:36:43,546:INFO:Pruning layer: layer2.1.conv2.weight
+2024-05-18 04:44:17,758:INFO:layer2.1.conv2.weight: Pruned 12 filters at 10%.
+2024-05-18 04:44:17,758:INFO:Pruning layer: layer3.0.conv1.weight
+2024-05-18 04:59:19,713:INFO:layer3.0.conv1.weight: Pruned 0 filters at 0%.
+2024-05-18 04:59:19,713:INFO:Pruning layer: layer3.0.conv2.weight
+2024-05-18 05:14:24,517:INFO:layer3.0.conv2.weight: Pruned 0 filters at 0%.
+2024-05-18 05:14:24,517:INFO:Pruning layer: layer3.1.conv1.weight
+2024-05-18 05:29:28,458:INFO:layer3.1.conv1.weight: Pruned 115 filters at 45%.
+2024-05-18 05:29:28,458:INFO:Pruning layer: layer3.1.conv2.weight
+2024-05-18 05:44:32,583:INFO:layer3.1.conv2.weight: Pruned 96 filters at 45%.
+2024-05-18 05:44:32,583:INFO:Pruning layer: layer4.0.conv1.weight
+2024-05-18 06:14:29,996:INFO:layer4.0.conv1.weight: Pruned 0 filters at 0%.
+2024-05-18 06:14:29,996:INFO:Pruning layer: layer4.0.conv2.weight
+2024-05-18 06:44:36,200:INFO:layer4.0.conv2.weight: Pruned 0 filters at 0%.
+2024-05-18 06:44:36,200:INFO:Pruning layer: layer4.1.conv1.weight
+2024-05-18 07:14:38,791:INFO:layer4.1.conv1.weight: Pruned 409 filters at 80%.
+2024-05-18 07:14:38,791:INFO:Pruning layer: layer4.1.conv2.weight
+2024-05-18 07:44:40,597:INFO:layer4.1.conv2.weight: Pruned 259 filters at 80%.
+2024-05-18 07:44:40,598:INFO:Total pruned filters in the model: 909
+2024-05-18 07:44:44,473:INFO:Epochs: 100
+2024-05-18 07:44:44,474:INFO:Target layers: ['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight', 'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight', 'layer2.0.conv2.weight', 'layer2.1.conv1.weight', 'layer2.1.conv2.weight', 'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight', 'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight', 'layer4.1.conv1.weight', 'layer4.1.conv2.weight']
+2024-05-18 07:44:44,474:INFO:Original Model: Accuracy: 99.33, Inference Time: 4.364392280578613, FLOPs: 3316369473536.0, Non-zero Params: 11689512
+2024-05-18 07:44:44,474:INFO:Pruned Model (prune_model_filters_by_importance): Accuracy: 99.13, Inference Time: 3.791863203048706, FLOPs: 2370600845312.0, Non-zero Params: 8094120
+2024-05-18 08:21:44,344:INFO:Fine-tuned Pruned Model (prune_model_filters_by_importance): Accuracy: 99.43, Inference Time: 3.977220058441162, FLOPs: 2370600845312.0, Non-zero Params: 8094120
