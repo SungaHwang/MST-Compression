@@ -154,7 +154,7 @@ def prune_model_weights(model, target_layers, pruning_percent=10, algorithm='kru
                 for edge in reversed(list(T.edges(data=True))):  # MST에서 역순으로 엣지 순회
                     if len(nodes_to_prune) < num_nodes_to_prune:
                         nodes_to_prune.add(edge[0])
-                        nodes_to_prune.add(edge[1])
+                        #nodes_to_prune.add(edge[1])
                     else:
                         break
 
@@ -198,7 +198,7 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
             # Remove edges and count unique filters until we reach the target number
             for edge in sorted_edges[::-1]:
                 if len(pruned_filters) < num_filters_to_prune:
-                    pruned_filters.update(edge[:2])
+                    pruned_filters.add(edge[1])
                 if len(pruned_filters) >= num_filters_to_prune:
                     break
 
