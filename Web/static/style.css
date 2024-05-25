@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.container {
+    max-width: 800px;
+}
+
+.jumbotron {
+    background-color: #ffffff;
+}
+
+.card {
+    margin-bottom: 2rem;
+}
+
+.footer {
+    padding: 1rem 0;
+}

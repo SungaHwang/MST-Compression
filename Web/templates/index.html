@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Pruning Demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Model Pruning Demo</a>
+    </nav>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Model Pruning with MST Algorithm</h1>
+            <p class="lead">
+                This demo showcases a model pruning technique using Minimum Spanning Tree (MST) algorithms.
+                The method is designed to optimize neural network models by reducing the number of parameters
+                while maintaining performance. The example uses ResNet18.
+            </p>
+        </div>
+        <div class="card mb-5">
+            <div class="card-header">
+                Pruning Algorithms
+            </div>
+            <div class="card-body">
+                <!-- README.md 파일의 내용이 삽입될 부분 -->
+                {{ readme_html|safe }}
+            </div>
+        </div>
+        <div class="card mb-5">
+            <div class="card-header">
+                Prune the Model
+            </div>
+            <div class="card-body">
+                <form id="prune-form">
+                    <div class="form-group">
+                        <label for="dataset">Select Dataset:</label>
+                        <select class="form-control" id="dataset" name="dataset">
+                            <option value="MNIST">MNIST</option>
+                            <option value="CIFAR10">CIFAR10</option>
+                            <option value="ImageNet">ImageNet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="algorithm">Select Algorithm:</label>
+                        <select class="form-control" id="algorithm" name="algorithm">
+                            <option value="kruskal">Kruskal</option>
+                            <option value="prim">Prim</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pruning_method">Select Pruning Method:</label>
+                        <select class="form-control" id="pruning_method" name="pruning_method">
+                            <option value="prune_model_weights">Prune by Weights</option>
+                            <option value="prune_model_filters_by_importance">Prune by Filter Importance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="epochs">Number of Epochs:</label>
+                        <input type="number" class="form-control" id="epochs" name="epochs" value="10" min="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Prune Model</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Logs
+            </div>
+            <div class="card-body">
+                <ul id="log-messages" class="list-unstyled"></ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Result
+            </div>
+            <div class="card-body" id="result">
+                <p id="initial-accuracy"></p>
+                <p id="trained-accuracy"></p>
+                <p id="pruned-accuracy"></p>
+                <p id="fine-tuned-accuracy"></p>
+                <p id="initial-flops"></p>
+                <p id="trained-flops"></p>
+                <p id="pruned-flops"></p>
+                <p id="fine-tuned-flops"></p>
+                <p id="initial-params"></p>
+                <p id="trained-params"></p>
+                <p id="pruned-params"></p>
+                <p id="fine-tuned-params"></p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer bg-dark text-white mt-5">
+        <div class="container text-center">
+            <span>© 2024 Sunga Hwang. All rights reserved.</span>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
