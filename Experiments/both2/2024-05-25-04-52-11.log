@@ -1,0 +1,97 @@
+2024-05-25 04:52:11,037:INFO:Logging setup complete - logging to: ResNet18/log/final/both2\2024-05-25-04-52-11.log
+2024-05-25 04:52:11,037:INFO:Starting the program
+2024-05-25 04:52:11,037:INFO:Arguments: Namespace(dataset='MNIST', algorithm='prim', pruning_order='weight_first', target_layers=['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight', 'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight', 'layer2.0.conv2.weight', 'layer2.1.conv1.weight', 'layer2.1.conv2.weight', 'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight', 'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight', 'layer4.1.conv1.weight', 'layer4.1.conv2.weight'], epochs=100)
+2024-05-25 04:52:11,074:INFO:Dataset: MNIST
+2024-05-25 04:52:16,404:INFO:Pruning layer: conv1.weight
+2024-05-25 04:52:16,404:INFO:Pruning layer: conv1.weight at 0%
+2024-05-25 04:52:16,581:INFO:conv1.weight: Pruned 0 / 9408 weights (0%)
+2024-05-25 04:52:16,581:INFO:Pruning layer: layer1.0.conv1.weight
+2024-05-25 04:52:16,581:INFO:Pruning layer: layer1.0.conv1.weight at 0%
+2024-05-25 04:52:17,080:INFO:layer1.0.conv1.weight: Pruned 0 / 36864 weights (0%)
+2024-05-25 04:52:17,081:INFO:Pruning layer: layer1.0.conv2.weight
+2024-05-25 04:52:17,081:INFO:Pruning layer: layer1.0.conv2.weight at 0%
+2024-05-25 04:52:17,586:INFO:layer1.0.conv2.weight: Pruned 0 / 36864 weights (0%)
+2024-05-25 04:52:17,586:INFO:Pruning layer: layer1.1.conv1.weight
+2024-05-25 04:52:17,586:INFO:Pruning layer: layer1.1.conv1.weight at 0%
+2024-05-25 04:52:18,080:INFO:layer1.1.conv1.weight: Pruned 0 / 36864 weights (0%)
+2024-05-25 04:52:18,081:INFO:Pruning layer: layer1.1.conv2.weight
+2024-05-25 04:52:18,081:INFO:Pruning layer: layer1.1.conv2.weight at 0%
+2024-05-25 04:52:18,577:INFO:layer1.1.conv2.weight: Pruned 0 / 36864 weights (0%)
+2024-05-25 04:52:18,577:INFO:Pruning layer: layer2.0.conv1.weight
+2024-05-25 04:52:18,577:INFO:Pruning layer: layer2.0.conv1.weight at 0%
+2024-05-25 04:52:19,676:INFO:layer2.0.conv1.weight: Pruned 0 / 73728 weights (0%)
+2024-05-25 04:52:19,676:INFO:Pruning layer: layer2.0.conv2.weight
+2024-05-25 04:52:19,676:INFO:Pruning layer: layer2.0.conv2.weight at 0%
+2024-05-25 04:52:21,846:INFO:layer2.0.conv2.weight: Pruned 0 / 147456 weights (0%)
+2024-05-25 04:52:21,847:INFO:Pruning layer: layer2.1.conv1.weight
+2024-05-25 04:52:21,847:INFO:Pruning layer: layer2.1.conv1.weight at 0%
+2024-05-25 04:52:24,000:INFO:layer2.1.conv1.weight: Pruned 0 / 147456 weights (0%)
+2024-05-25 04:52:24,000:INFO:Pruning layer: layer2.1.conv2.weight
+2024-05-25 04:52:24,000:INFO:Pruning layer: layer2.1.conv2.weight at 2.5%
+2024-05-25 04:52:26,060:INFO:layer2.1.conv2.weight: Pruned 3584 / 147456 weights (2.5%)
+2024-05-25 04:52:26,060:INFO:Pruning layer: layer3.0.conv1.weight
+2024-05-25 04:52:26,060:INFO:Pruning layer: layer3.0.conv1.weight at 2.5%
+2024-05-25 04:52:30,213:INFO:layer3.0.conv1.weight: Pruned 7168 / 294912 weights (2.5%)
+2024-05-25 04:52:30,213:INFO:Pruning layer: layer3.0.conv2.weight
+2024-05-25 04:52:30,213:INFO:Pruning layer: layer3.0.conv2.weight at 2.5%
+2024-05-25 04:52:38,823:INFO:layer3.0.conv2.weight: Pruned 14592 / 589824 weights (2.5%)
+2024-05-25 04:52:38,823:INFO:Pruning layer: layer3.1.conv1.weight
+2024-05-25 04:52:38,823:INFO:Pruning layer: layer3.1.conv1.weight at 20%
+2024-05-25 04:52:47,489:INFO:layer3.1.conv1.weight: Pruned 117760 / 589824 weights (20%)
+2024-05-25 04:52:47,490:INFO:Pruning layer: layer3.1.conv2.weight
+2024-05-25 04:52:47,490:INFO:Pruning layer: layer3.1.conv2.weight at 15%
+2024-05-25 04:52:56,101:INFO:layer3.1.conv2.weight: Pruned 88320 / 589824 weights (15%)
+2024-05-25 04:52:56,101:INFO:Pruning layer: layer4.0.conv1.weight
+2024-05-25 04:52:56,101:INFO:Pruning layer: layer4.0.conv1.weight at 15%
+2024-05-25 04:53:13,394:INFO:layer4.0.conv1.weight: Pruned 176640 / 1179648 weights (15%)
+2024-05-25 04:53:13,395:INFO:Pruning layer: layer4.0.conv2.weight
+2024-05-25 04:53:13,395:INFO:Pruning layer: layer4.0.conv2.weight at 20%
+2024-05-25 04:53:49,129:INFO:layer4.0.conv2.weight: Pruned 471552 / 2359296 weights (20%)
+2024-05-25 04:53:49,130:INFO:Pruning layer: layer4.1.conv1.weight
+2024-05-25 04:53:49,130:INFO:Pruning layer: layer4.1.conv1.weight at 35%
+2024-05-25 04:54:25,031:INFO:layer4.1.conv1.weight: Pruned 825344 / 2359296 weights (35%)
+2024-05-25 04:54:25,032:INFO:Pruning layer: layer4.1.conv2.weight
+2024-05-25 04:54:25,032:INFO:Pruning layer: layer4.1.conv2.weight at 35%
+2024-05-25 04:55:00,876:INFO:layer4.1.conv2.weight: Pruned 825344 / 2359296 weights (35%)
+2024-05-25 04:55:00,877:INFO:Total pruned weights: 2530304
+2024-05-25 04:55:03,162:INFO:Pruning layer: conv1.weight
+2024-05-25 04:57:32,914:INFO:conv1.weight: Pruned 0 filters at 0%.
+2024-05-25 04:57:32,914:INFO:Pruning layer: layer1.0.conv1.weight
+2024-05-25 05:00:02,290:INFO:layer1.0.conv1.weight: Pruned 0 filters at 0%.
+2024-05-25 05:00:02,290:INFO:Pruning layer: layer1.0.conv2.weight
+2024-05-25 05:02:30,498:INFO:layer1.0.conv2.weight: Pruned 0 filters at 0%.
+2024-05-25 05:02:30,498:INFO:Pruning layer: layer1.1.conv1.weight
+2024-05-25 05:05:00,157:INFO:layer1.1.conv1.weight: Pruned 0 filters at 0%.
+2024-05-25 05:05:00,157:INFO:Pruning layer: layer1.1.conv2.weight
+2024-05-25 05:07:29,589:INFO:layer1.1.conv2.weight: Pruned 0 filters at 0%.
+2024-05-25 05:07:29,589:INFO:Pruning layer: layer2.0.conv1.weight
+2024-05-25 05:12:26,334:INFO:layer2.0.conv1.weight: Pruned 0 filters at 0%.
+2024-05-25 05:12:26,334:INFO:Pruning layer: layer2.0.conv2.weight
+2024-05-25 05:17:21,696:INFO:layer2.0.conv2.weight: Pruned 0 filters at 0%.
+2024-05-25 05:17:21,696:INFO:Pruning layer: layer2.1.conv1.weight
+2024-05-25 05:22:18,464:INFO:layer2.1.conv1.weight: Pruned 0 filters at 0%.
+2024-05-25 05:22:18,464:INFO:Pruning layer: layer2.1.conv2.weight
+2024-05-25 05:27:14,880:INFO:layer2.1.conv2.weight: Pruned 3 filters at 2.5%.
+2024-05-25 05:27:14,880:INFO:Pruning layer: layer3.0.conv1.weight
+2024-05-25 05:37:06,010:INFO:layer3.0.conv1.weight: Pruned 6 filters at 2.5%.
+2024-05-25 05:37:06,010:INFO:Pruning layer: layer3.0.conv2.weight
+2024-05-25 05:46:58,432:INFO:layer3.0.conv2.weight: Pruned 6 filters at 2.5%.
+2024-05-25 05:46:58,432:INFO:Pruning layer: layer3.1.conv1.weight
+2024-05-25 05:56:49,101:INFO:layer3.1.conv1.weight: Pruned 51 filters at 20%.
+2024-05-25 05:56:49,101:INFO:Pruning layer: layer3.1.conv2.weight
+2024-05-25 06:06:37,099:INFO:layer3.1.conv2.weight: Pruned 38 filters at 15%.
+2024-05-25 06:06:37,099:INFO:Pruning layer: layer4.0.conv1.weight
+2024-05-25 06:26:17,340:INFO:layer4.0.conv1.weight: Pruned 76 filters at 15%.
+2024-05-25 06:26:17,340:INFO:Pruning layer: layer4.0.conv2.weight
+2024-05-25 06:45:59,498:INFO:layer4.0.conv2.weight: Pruned 102 filters at 20%.
+2024-05-25 06:45:59,498:INFO:Pruning layer: layer4.1.conv1.weight
+2024-05-25 07:05:34,816:INFO:layer4.1.conv1.weight: Pruned 179 filters at 35%.
+2024-05-25 07:05:34,816:INFO:Pruning layer: layer4.1.conv2.weight
+2024-05-25 07:25:45,538:INFO:layer4.1.conv2.weight: Pruned 179 filters at 35%.
+2024-05-25 07:25:45,538:INFO:Total pruned filters in the model: 640
+2024-05-25 07:31:13,029:INFO:Epochs: 100
+2024-05-25 07:31:13,029:INFO:Target layers: ['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight', 'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight', 'layer2.0.conv2.weight', 'layer2.1.conv1.weight', 'layer2.1.conv2.weight', 'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight', 'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight', 'layer4.1.conv1.weight', 'layer4.1.conv2.weight']
+2024-05-25 07:31:13,030:INFO:original: Accuracy: 99.33, Inference Time: 3.9823436737060547, FLOPs: 3316369473536.0, Non-zero Params: 11689512
+2024-05-25 07:31:13,030:INFO:pruned_wf: Accuracy: 99.26, Inference Time: 2.2625207901000977, FLOPs: 2712735334400.0, Non-zero Params: 9159208
+2024-05-25 07:31:13,030:INFO:pruned_wf_ft: Accuracy: 99.02, Inference Time: 2.3387770652770996, FLOPs: 2282093090816.0, Non-zero Params: 7369598
+2024-05-25 07:31:13,031:INFO:pruned_wf_fine_tuned: Accuracy: 99.48, Inference Time: 2.338587999343872, FLOPs: 2282093090816.0, Non-zero Params: 7369598
