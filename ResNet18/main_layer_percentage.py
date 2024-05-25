@@ -15,7 +15,30 @@ import copy
 import random
 import argparse
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# 프루닝 비율 딕셔너리 정의
+pruning_percents = {
+    'conv1.weight' : 0,
+    'layer1.0.conv1.weight': 0,
+    'layer1.0.conv2.weight': 0,
+    'layer1.1.conv1.weight': 5,
+    'layer1.1.conv2.weight': 0,
+    'layer2.0.conv1.weight': 0,
+    'layer2.0.conv2.weight': 0,
+    'layer2.1.conv1.weight': 0,
+    'layer2.1.conv2.weight': 5,
+    'layer3.0.conv1.weight': 5,
+    'layer3.0.conv2.weight': 5,
+    'layer3.1.conv1.weight': 40,
+    'layer3.1.conv2.weight': 30,
+    'layer4.0.conv1.weight': 30,
+    'layer4.0.conv2.weight': 40,
+    'layer4.1.conv1.weight': 80,
+    'layer4.1.conv2.weight': 80
+}
+
+
 
 # 로깅 설정
 def setup_logging():
@@ -72,6 +95,7 @@ def initialize_model():
 
 # 모델 학습
 def train_model(model, train_loader, epochs=100):
+    model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
     model.train()
@@ -94,7 +118,8 @@ def train_model(model, train_loader, epochs=100):
 
 # 1
 # 프루닝 방법 1: 가중치에 기반한 프루닝
-def prune_model_weights(model, target_layers, pruning_percent=10, algorithm='kruskal'):
+def prune_model_weights(model, target_layers, pruning_percents, algorithm='kruskal'):
+    model = model.to(device)
     total_pruned_weights = 0
     for name, param in model.named_parameters():
         if name in target_layers:
@@ -159,7 +184,8 @@ def prune_model_weights(model, target_layers, pruning_percent=10, algorithm='kru
 
 # 2
 # 프루닝 방법 2: 필터 중요도에 기반한 프루닝
-def prune_model_filters_by_importance(model, train_loader, test_loader, target_layers, pruning_percents= 10, algorithm='kruskal'):
+def prune_model_filters_by_importance(model, train_loader, test_loader, target_layers, pruning_percents, algorithm='prim'):
+    model = model.to(device)
     total_pruned_filters = 0
     for name, param in model.named_parameters():
         if name in target_layers:
@@ -174,8 +200,10 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
 
             mst = nx.minimum_spanning_tree(G, weight='weight', algorithm=algorithm)
             sorted_edges = sorted(mst.edges(data=True), key=lambda x: x[2]['weight'], reverse=True)
-            
-            num_filters_to_prune = int(num_filters * pruning_percents[name] / 100)
+
+            pruning_percent = pruning_percents[name]  # 각 레이어별 프루닝 비율을 딕셔너리에서 가져옴
+
+            num_filters_to_prune = int(num_filters * pruning_percent / 100)
             pruned_filters = set()
 
             # Remove edges and count unique filters until we reach the target number
@@ -190,13 +218,14 @@ def prune_model_filters_by_importance(model, train_loader, test_loader, target_l
             mask[pruned_filters] = 0
             param.data *= mask[:, None, None, None]
 
-            logging.info(f"{name}: Pruned {len(pruned_filters)} filters at {pruning_percents}%.")
+            logging.info(f"{name}: Pruned {len(pruned_filters)} filters at {pruning_percent}%.")
             total_pruned_filters += len(pruned_filters)
 
     logging.info(f"Total pruned filters in the model: {total_pruned_filters}")
     return model
 
 def compute_layer_importance(model, train_loader, test_loader, layer_name):
+    model = model.to(device)
     original_accuracy = evaluate_model(model, test_loader)
     importance_scores = []
 
@@ -215,6 +244,7 @@ def compute_layer_importance(model, train_loader, test_loader, layer_name):
 
 # 성능 평가
 def evaluate_model(model, test_loader):
+    model = model.to(device)
     model.eval()
     correct = 0
     total = 0
@@ -233,6 +263,7 @@ def evaluate_model(model, test_loader):
 import time
 
 def compute_flops(model, input_size=(1, 3, 224, 224)):
+    model = model.to(device)
     model.eval()
     input = torch.randn(input_size).to(device)
 
@@ -271,6 +302,7 @@ def compute_flops(model, input_size=(1, 3, 224, 224)):
     return total_flops
 
 def count_nonzero_parameters(model):
+    model = model.to(device)
     total_params = 0
     zero_count = 0
     for param in model.parameters():
@@ -283,6 +315,7 @@ def count_nonzero_parameters(model):
 
 
 def evaluate_model_full(model, test_loader):
+    model = model.to(device)
     model.eval()
     torch.cuda.empty_cache()
     # Accuracy
@@ -309,29 +342,38 @@ def evaluate_model_full(model, test_loader):
 
     return accuracy, inference_time, flops, nonzero_params
 
-# 프루닝 비율 딕셔너리 정의
-pruning_percents = {
-    'conv1.weight' : 0,
-    'layer1.0.conv1.weight': 5,
-    'layer1.0.conv2.weight': 5,
-    'layer1.1.conv1.weight': 5,
-    'layer1.1.conv2.weight': 5,
-    'layer2.0.conv1.weight': 5,
-    'layer2.0.conv2.weight': 5,
-    'layer2.1.conv1.weight': 5,
-    'layer2.1.conv2.weight': 10,
-    'layer3.0.conv1.weight': 5,
-    'layer3.0.conv2.weight': 10,
-    'layer3.1.conv1.weight': 30,
-    'layer3.1.conv2.weight': 30,
-    'layer4.0.conv1.weight': 10,
-    'layer4.0.conv2.weight': 10,
-    'layer4.1.conv1.weight': 30,
-    'layer4.1.conv2.weight': 50
-}
+def fine_tune_pruned_model(pruned_model, train_loader, test_loader, epochs=10):
+    # 0으로 만든 가중치를 고려하지 않고 모델을 설정합니다.
+    for name, param in pruned_model.named_parameters():
+        if 'weight' in name and not torch.equal(param, torch.zeros_like(param)):
+            param.requires_grad = True  # 0이 아닌 가중치를 파인튜닝에 포함
 
+    optimizer = optim.SGD(pruned_model.parameters(), lr=0.001, momentum=0.9)
+    criterion = nn.CrossEntropyLoss()
+
+    pruned_model.train()
+    for epoch in range(epochs):
+        running_loss = 0.0
+        for i, data in enumerate(train_loader, 0):
+            inputs, labels = data[0].to(device), data[1].to(device)
+
+            optimizer.zero_grad()
+
+            outputs = pruned_model(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+            if i % 100 == 99:
+                print('[%d, %5d] loss: %.3f' %
+                      (epoch + 1, i + 1, running_loss / 100))
+                running_loss = 0.0
+
+    return pruned_model
 
 def main(args):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(device)
     setup_logging()
     logging.info("Starting the program")
@@ -379,7 +421,7 @@ def main(args):
     
     # 원본 모델 평가
     original_model = copy.deepcopy(trained_model)
-    results['original'] = evaluate_model_full(original_model, test_loader, device)
+    results['original'] = evaluate_model_full(original_model, test_loader)
 
     # 프루닝 실행
     if args.pruning_method == "prune_model_weights":
@@ -392,7 +434,7 @@ def main(args):
         raise ValueError("Invalid pruning method")
 
     # 프루닝된 모델 평가
-    results[method_key] = evaluate_model_full(pruned_model, test_loader, device)
+    results[method_key] = evaluate_model_full(pruned_model, test_loader)
 
     logging.info(f"Epochs: {args.epochs}")
     logging.info(f"Target layers: {args.target_layers}")
@@ -405,17 +447,28 @@ def main(args):
     print(f"Pruned Model ({args.pruning_method}): Accuracy: {results[method_key][0]}, Inference Time: {results[method_key][1]}, FLOPs: {results[method_key][2]}, Non-zero Params: {results[method_key][3]}")
     logging.info(f"Pruned Model ({args.pruning_method}): Accuracy: {results[method_key][0]}, Inference Time: {results[method_key][1]}, FLOPs: {results[method_key][2]}, Non-zero Params: {results[method_key][3]}")
 
+    # 파인튜닝
+    pruned_model = fine_tune_pruned_model(pruned_model, train_loader, test_loader)
+
+    # 파인튜닝된 모델 평가
+    fine_tuned_results = evaluate_model_full(pruned_model, test_loader)
+    results[method_key + '_fine_tuned'] = fine_tuned_results
+    
+    # 파인튜닝 결과 출력
+    print(f"Fine-tuned Pruned Model ({args.pruning_method}): Accuracy: {fine_tuned_results[0]}, Inference Time: {fine_tuned_results[1]}, FLOPs: {fine_tuned_results[2]}, Non-zero Params: {fine_tuned_results[3]}")
+    logging.info(f"Fine-tuned Pruned Model ({args.pruning_method}): Accuracy: {fine_tuned_results[0]}, Inference Time: {fine_tuned_results[1]}, FLOPs: {fine_tuned_results[2]}, Non-zero Params: {fine_tuned_results[3]}")
+    
     return pruned_model
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Model Pruning")
     parser.add_argument("--dataset", type=str, default="CIFAR10", choices=["MNIST", "CIFAR10", "ImageNet"], help="Dataset for pruning")
-    parser.add_argument("--algorithm", type=str, default="kruskal", choices=["kruskal", "prim"], help="Algorithm for pruning")
-    parser.add_argument("--pruning_method", type=str, default="prune_model_weights", choices=["prune_model_weights", "prune_model_filters_by_importance"], help="Pruning method")
+    parser.add_argument("--algorithm", type=str, default="prim", choices=["kruskal", "prim"], help="Algorithm for pruning")
+    parser.add_argument("--pruning_method", type=str, default="prune_model_filters_by_importance", choices=["prune_model_weights", "prune_model_filters_by_importance"], help="Pruning method")
     parser.add_argument("--target_layers", nargs="+",
                         default=['conv1.weight', 'layer1.0.conv1.weight', 'layer1.0.conv2.weight',
                                  'layer1.1.conv1.weight', 'layer1.1.conv2.weight', 'layer2.0.conv1.weight',
-                                 'layer2.0.conv2.weight', 'layer2.s1.conv1.weight', 'layer2.1.conv2.weight',
+                                 'layer2.0.conv2.weight', 'layer2.1.conv1.weight', 'layer2.1.conv2.weight',
                                  'layer3.0.conv1.weight', 'layer3.0.conv2.weight', 'layer3.1.conv1.weight',
                                  'layer3.1.conv2.weight', 'layer4.0.conv1.weight', 'layer4.0.conv2.weight',
                                  'layer4.1.conv1.weight', 'layer4.1.conv2.weight'],
