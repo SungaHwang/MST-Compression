@@ -343,14 +343,11 @@ def evaluate_model_full(model, test_loader):
     return accuracy, inference_time, flops, nonzero_params
 
 def fine_tune_pruned_model(pruned_model, train_loader, test_loader, epochs=10):
-    # 0으로 만든 가중치를 고려하지 않고 모델을 설정합니다.
-    for name, param in pruned_model.named_parameters():
-        if 'weight' in name and not torch.equal(param, torch.zeros_like(param)):
-            param.requires_grad = True  # 0이 아닌 가중치를 파인튜닝에 포함
-
+    # Optimizer 설정
     optimizer = optim.SGD(pruned_model.parameters(), lr=0.001, momentum=0.9)
     criterion = nn.CrossEntropyLoss()
 
+    # 모델 훈련
     pruned_model.train()
     for epoch in range(epochs):
         running_loss = 0.0
@@ -362,6 +359,16 @@ def fine_tune_pruned_model(pruned_model, train_loader, test_loader, epochs=10):
             outputs = pruned_model(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
+
+            # 가중치가 0인 파라미터의 gradient를 0으로 설정
+            for name, param in pruned_model.named_parameters():
+                if 'weight' in name:
+                    # 가중치 값이 0인 위치 찾기
+                    zero_mask = (param == 0)
+                    if zero_mask.any():
+                        # 해당 위치의 gradient를 0으로 설정
+                        param.grad.data[zero_mask] = 0
+
             optimizer.step()
 
             running_loss += loss.item()
