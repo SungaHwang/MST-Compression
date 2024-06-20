@@ -63,3 +63,8 @@ Begin
     return M
 End
 ```
+
+
+# Demo Page
+https://github.com/SungaHwang/Model-Compression/assets/74399508/c6d1ebf0-bdd2-45d4-81d0-1c8f2024b274
+
